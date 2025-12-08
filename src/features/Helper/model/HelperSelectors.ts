@@ -1,0 +1,13 @@
+export const selectHelperName = (state: RootState) => state.helper.name
+export const selectHelperNameError = (state: RootState) => state.helper.nameError
+export const selectHelperSecondName = (state: RootState) => state.helper.secondName
+export const selectHelperSecondNameError = (state: RootState) => state.helper.secondNameError
+export const selectHelperFacult = (state: RootState) => state.helper.facult
+export const selectHelperFacultError = (state: RootState) => state.helper.facultError
+export const selectHelperDirection = (state: RootState) => state.helper.direction
+export const selectHelperDirectionError = (state: RootState) => state.helper.directionError
+export const selectHelperMainSubjects = (state: RootState) => state.helper.mainSubjects
+export const selectHelperMainSubjectsError = (state: RootState) => state.helper.mainSubjectsError
+export const selectHelperCourse = (state: RootState) => state.helper.mainSubjectsError
+export const selectHelperCourseError = (state: RootState) => state.helper.course
+export const selectHelperFilesError = (state: RootState) => state.helper.courseError

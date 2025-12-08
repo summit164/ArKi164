@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px auto;
+  position: relative;
+
+  .button {
+    white-space: nowrap;
+    color: var(--white1);
+    padding: 6px 18px;
+    background-blend-mode: overlay, luminosity;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    user-select: none;
+
+    svg {
+      width: 20px;
+      max-width: 20px;
+      min-width: 20px;
+      height: 20px;
+      max-height: 20px;
+      min-height: 20px;
+      z-index: 2;
+    }
+
+    .text {
+      line-height: 18px;
+      font-size: 18px;
+      z-index: 2;
+    }
+  }
+
+  .shadow {
+    position: absolute;
+    left: 0;
+    transition: left .3s, width .3s, height .3s;
+    background-color: rgba(116, 116, 128, .16);
+    border-radius: 14px;
+  }
+}

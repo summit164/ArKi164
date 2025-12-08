@@ -1,0 +1,14 @@
+@mixin font($fname, $fweight, $url) {
+  @font-face {
+      font-family: $fname;
+      font-weight: $fweight;
+      src:             
+        local($fname),
+        url($url) format("truetype"),
+  }
+}
+
+@include font('SF Pro', 400, '../../shared/assets/fonts/SFProText-Light.ttf');
+@include font('SF Pro', 500, '../../shared/assets/fonts/SFProText-Medium.ttf');
+@include font('SF Pro', 600, '../../shared/assets/fonts/SFProText-Bold.ttf');
+@include font('SF Pro', 700, '../../shared/assets/fonts/SFProText-Bold.ttf');

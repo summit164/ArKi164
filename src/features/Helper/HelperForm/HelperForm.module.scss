@@ -1,0 +1,68 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+
+    .heading {
+      color: #FFF;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 22px;
+    }
+
+    .input {
+      width: 100%;
+    }
+  }
+
+  .files {
+    display: flex;
+    justify-content: flex-end;
+
+    &_wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &_button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      height: 50px;
+
+      @media (max-width: 540px) {
+        width: 30px;
+        height: 30px;
+        padding: 0px;
+      }
+    }
+
+    &_list {
+      gap: 6px;
+    }
+
+    &_container {
+      @media (max-width: 540px) {
+        border-radius: 6px !important;
+        width: 30px !important;
+        max-width: 30px !important;
+        min-width: 30px !important;
+        height: 30px !important;
+        max-height: 30px !important;
+        min-height: 30px !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: calc(50% - 6px);
+  max-width: calc(50% - 6px);
+  background: rgb(23, 23, 23);
+  border-radius: 26px;
+  padding: 16px;
+  animation-name: appearance;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  cursor: pointer;
+
+  .img {
+    width: 45px;
+    min-width: 45px;
+    max-width: 45px;
+    height: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--white1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    color: var(--blue2);
+    font-size: 12px;
+    user-select: none;
+    
+    .icon {
+      width: 10px;
+      height: 10px;
+
+      path {
+        stroke: var(--blue2);
+      }
+    }
+  }
+}
+
+@keyframes appearance {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opcaity: 1
+  }
+}

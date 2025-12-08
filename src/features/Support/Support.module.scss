@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+
+  .icon {
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+    height: 140px;
+    min-height: 140px;
+    max-height: 140px;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    color: var(--white1);
+    text-align: center;
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    color: var(--white1);
+    text-align: center;
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 40px;
+  }
+
+  .button {
+    margin-top: auto;
+  }
+}

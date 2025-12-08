@@ -1,0 +1,171 @@
+.overlay {
+  position: relative;
+  z-index: 1000;
+}
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background-blue1);
+  padding: 65px 16px 16px;
+  will-change: transform;
+
+  .avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    position: relative;
+    margin-bottom: 8px;
+
+    .img {
+      width: 100px;
+      height: 100px;
+      transform: scale(1);
+      transition: transform .3s, opacity .3s, width .3s, height .3s;
+      object-fit: cover;
+      object-position: center;
+      position: relative;
+      z-index: 2;
+      border-radius: 50%;
+      box-shadow: 0 0 130px 0 rgba(255, 255, 255, 0.20);
+      will-change: transform;
+      user-select: none;
+    }
+  }
+
+  .name {
+    position: relative;
+    white-space: nowrap;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    color: var(--white1);
+    z-index: 2;
+  }
+
+  .description {
+    position: relative;
+    margin-bottom: 18px;
+    color: #96a8bc;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 17px;
+    line-height: 22px;
+    z-index: 2;
+  }
+
+  .controls {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.plug {
+  height: 322px
+}
+
+
+.up-container {
+  animation-name: upContainer;
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@keyframes upContainer {
+  0% {
+    transform: translateY(0px)
+  }
+
+  100% {
+    transform: translateY(-165px)
+  }
+}
+
+.down-container {
+  animation-name: downContainer;
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@keyframes downContainer {
+  0% {
+    transform: translateY(-165px)
+  }
+
+  100% {
+    transform: translateY(0px)
+  }
+}
+
+.small-img {
+  animation-name: smallImg;
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@keyframes smallImg {
+  0% {
+    transform: scale(1)
+  }
+
+  100% {
+    transform: scale(0)
+  }
+}
+
+.large-img {
+  animation-name: largeImg;
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@keyframes largeImg {
+  0% {
+    transform: scale(0)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}
+
+.small-lamp-grid {
+  animation-name: small-lamp-grid;
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@keyframes small-lamp-grid {
+  0% {
+    transform: scale(1)
+  }
+
+  100% {
+    transform: scale(0)
+  }
+}
+
+.large-lamp-grid {
+  animation-name: largeLampGrid;
+  animation-duration: .3s;
+  animation-fill-mode: both;
+}
+
+@keyframes largeLampGrid {
+  0% {
+    transform: scale(0)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}

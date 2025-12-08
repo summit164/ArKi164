@@ -1,0 +1,19 @@
+.wrapper {
+  position: fixed;
+  left: -10px;
+  right: -10px;
+  bottom: -8px;
+  width: 100%;
+  box-sizing: content-box;
+  padding: 0 10px;
+  background: #1c1c1c;
+  background-blend-mode: overlay, normal;
+  box-shadow: 0.5px 0 0 0 #38383A, -0.5px 0 0 0 #38383A, 0 -0.5px 0 0 #38383A, 0 0.5px 0 0 #38383A;
+  backdrop-filter: blur(50px);
+
+  .container {
+    display: flex;
+    padding: 4.5px 0px 30px;
+    border-top: 0.01px solid var(--gray3);
+  }
+}

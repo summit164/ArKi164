@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .button {
+    width: 50%;
+    white-space: nowrap;
+    color: var(--white1);
+    font-size: 12px;
+    line-height: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #414b55;
+    background-blend-mode: overlay, luminosity;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    user-select: none;
+
+
+    svg {
+      width: 20px;
+      max-width: 20px;
+      min-width: 20px;
+      height: 20px;
+      max-height: 20px;
+      min-height: 20px;
+      z-index: 2;
+    }
+
+    .text {
+      z-index: 2;
+    }
+  }
+}

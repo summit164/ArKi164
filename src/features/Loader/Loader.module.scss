@@ -1,0 +1,79 @@
+.wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  inset: 0;
+  z-index: 9999;
+  background-color: #1c1c1c;
+  padding-top: 65px;
+}
+
+.img {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    transform: scale(1);
+    transition: transform .3s, opacity .3s, width .3s, height .3s;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+    z-index: 2;
+    border-radius: 50%;
+    box-shadow: 0 0 130px 0 rgba(255, 255, 255, 0.20);
+    will-change: transform;
+    user-select: none;
+
+    &_animate_pulsar {
+      animation-name: pulsar;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+    &_animate_appearance {
+      animation-name: appearance;
+      animation-duration: .1s;
+    }
+
+    &_animate_disappearance {
+      animation-name: disappearance;
+      animation-duration: .5s;
+    }
+  }
+
+@keyframes pulsar {
+  0% {
+    transform: scale(1)
+  }
+
+  50% {
+    transform: scale(1.1)
+  }
+
+  100%{
+    transform: scale(1)
+  }
+}
+
+@keyframes disappearance {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes appearance {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}

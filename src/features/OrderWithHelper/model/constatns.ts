@@ -1,0 +1,4 @@
+export const TAB_FORM = 'form'
+export const TAB_SUCCESS = 'success'
+export const TAB_FAIL = 'fail'
+export const TAB_LOADING = 'loading'

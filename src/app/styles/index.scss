@@ -1,0 +1,76 @@
+* {
+  font-family: 'SF Pro';
+  font-size: 16px;
+  font-weight: 400;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+
+  --black1: #000000;
+  --white1: #FFFFFF;
+  --gray1: #1a1a1a;
+  --gray2: #EBEBF5;
+  --gray3: #3d3d3f;
+  --blue1: rgba(127, 127, 127, 0.50);
+  --blue2: #65a9e0;
+  --red1: #FF453A;
+  --background-blue1: linear-gradient(180deg, #3B4856 0%, #54616F 100%);
+  --background-gray: linear-gradient(0deg, rgba(61, 61, 61, 0.50) 0%, rgba(61, 61, 61, 0.50) 100%), rgba(127, 127, 127, 0.20);
+  --default-padding-bottom: 90px;
+  --padding-bottom-45: 45px;
+  --default-padding-form: 15px 48px 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #1c1c1c;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+body > div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+a, a:link, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+button, input[type="submit"], input {
+    display: inline-block;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+    border: none;
+}
+
+input, textarea, button, select {
+	font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}

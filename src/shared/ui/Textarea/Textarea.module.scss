@@ -1,0 +1,41 @@
+.textarea {
+  width: 100%;
+  background: #181818;
+  background-blend-mode: overlay, normal;
+  border: none;
+  border-radius: 10px;
+  color: var(--white1);
+  padding: 14px 10px;
+  font-size: 17px;
+  line-height: 22px;
+  transition-property: box-shadow, border-color;
+  transition-duration: .2s;
+  resize: vertical;
+  min-height: 74px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    user-select: none;
+    color: #97979e;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  border-color: var(--red1);
+
+  &_text {
+    color: var(--red1);
+  }
+}

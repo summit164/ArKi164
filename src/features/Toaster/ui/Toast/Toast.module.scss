@@ -1,0 +1,93 @@
+
+@keyframes notification-appearance{
+  0%{
+      transform: translateX(100%);
+  }
+
+  100%{
+      transform: translateX(0%);
+  }
+}
+
+.toast {
+  display: flex;
+  column-gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 9px 28px 8px rgba(24, 24, 42, 0.05), 0 6px 16px 0 rgba(24, 24, 42, 0.08), 0 3px 6px -4px rgba(24, 24, 42, 0.12);
+  background: rgba(24, 24, 42, 0.9);
+  overflow-wrap: anywhere;
+  animation-name: notification-appearance;
+  animation-duration: 1s;
+  user-select: none;
+  transition-property: opacity;
+  transition-duration: .15s;
+
+  .svg {
+    width: 24px;
+    min-width: 24px;
+    max-width: 24px;
+    height: 24px;
+    max-height: 24px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 20px;
+      min-width: 20px;
+      max-width: 20px;
+      height: 20px;
+      max-height: 20px;
+      min-height: 20px;
+   }
+  }
+
+  .body {
+    text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    color: #fff;
+  }
+
+  .button {
+    width: 24px;
+    min-width: 24px;
+    max-width: 24px;
+    height: 24px;
+    max-height: 24px;
+    min-height: 24px;
+    border: none;
+    background: none;
+    user-select: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg{
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.icon_loading{
+  transform: rotateZ(0deg);
+  animation-name: rotation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotation{
+  0%{
+      transform: rotateZ(0deg);
+  }
+
+  100%{
+      transform: rotateZ(360deg);
+  }
+}

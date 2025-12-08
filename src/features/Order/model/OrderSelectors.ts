@@ -1,0 +1,16 @@
+export const selectOrderCourse = (state: RootState) => state.order.course
+export const selectOrderCourseError = (state: RootState) => state.order.courseError
+export const selectOrderDuration = (state: RootState) => state.order.duration
+export const selectOrderDurationError = (state: RootState) => state.order.durationError
+export const selectOrderSubject = (state: RootState) => state.order.subject
+export const selectOrderSubjectError = (state: RootState) => state.order.subjectError
+export const selectOrderService = (state: RootState) => state.order.service
+export const selectOrderServiceError = (state: RootState) => state.order.serviceError
+export const selectOrderCondition = (state: RootState) => state.order.condition
+export const selectOrderConditionError = (state: RootState) => state.order.conditionError
+export const selectOrderAmount = (state: RootState) => state.order.amount
+export const selectOrderAmountError = (state: RootState) => state.order.amountError
+export const selectOrderFacult = (state: RootState) => state.order.facult
+export const selectOrderComment = (state: RootState) => state.order.comment
+export const selectOrderCommentError = (state: RootState) => state.order.commentError
+export const selectOrderFacultError = (state: RootState) => state.order.facultError

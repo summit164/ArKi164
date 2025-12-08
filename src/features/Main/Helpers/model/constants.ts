@@ -1,0 +1,1 @@
+export const MINIMAL_HELPER_VISIBLE = 3
