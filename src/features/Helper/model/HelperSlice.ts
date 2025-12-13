@@ -14,6 +14,8 @@ type TypeInitialState = {
   filesError: string
   course: string
   courseError: string
+  isAgree: boolean
+  isAgreeError: string
 }
 
 const initialState: TypeInitialState = {
@@ -29,7 +31,9 @@ const initialState: TypeInitialState = {
   mainSubjectsError: '',
   filesError: '',
   course: '',
-  courseError: ''
+  courseError: '',
+  isAgree: false,
+  isAgreeError: ''
 }
 
 export const HelperSlice = createSlice({
@@ -48,6 +52,8 @@ export const HelperSlice = createSlice({
     setMainSubjectsError: (state, action: PayloadAction<string>) => ({ ...state, mainSubjectsError: action.payload }),
     setCourse: (state, action: PayloadAction<string>) => ({ ...state, course: action.payload, courseError: '' }),
     setCourseError: (state, action: PayloadAction<string>) => ({ ...state, courseError: action.payload }),
+    setIsAgree: (state, action: PayloadAction<boolean>) => ({ ...state, isAgree: action.payload, isAgreeError: '' }),
+    setIsAgreeError: (state, action: PayloadAction<string>) => ({ ...state, isAgreeError: action.payload }),
     setFilesError: (state, action: PayloadAction<string>) => ({ ...state, filesError: action.payload }),
     setError: (state, action: PayloadAction<{ key: string, value: string }>) => ({ ...state, [action.payload.key]: action.payload.value }),
     setDefaultValues: (state) => ({ ...state, ...initialState })
@@ -67,6 +73,8 @@ export const {
   setMainSubjectsError,
   setCourse,
   setCourseError,
+  setIsAgree,
+  setIsAgreeError,
   setFilesError,
   setError,
   setDefaultValues

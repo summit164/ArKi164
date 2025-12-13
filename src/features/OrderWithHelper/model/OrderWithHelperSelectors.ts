@@ -1,4 +1,4 @@
-export const selectOrderWithHelperChoiceHelperTgName = (state: RootState) => state.orderWithHelper.choiceHelperTgName
+export const selectOrderWithHelperChoiceHelperId = (state: RootState) => state.orderWithHelper.choiceHelperId
 export const selectOrderWithHelperChoiceHelperName = (state: RootState) => state.orderWithHelper.choiceHelperName
 export const selectOrderWithHelperChoiceHelperSecondName = (state: RootState) => state.orderWithHelper.choiceHelperSecondName
 export const selectOrderWithHelperChoiceHelperTgPhoto = (state: RootState) => state.orderWithHelper.choiceHelperTgPhoto

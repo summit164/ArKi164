@@ -17,7 +17,7 @@ import { InfoBlock } from '@/entities/InfoBlock/InfoBlock'
 import s from './OrderWithHelper.module.scss'
 import { setError } from '../Order/model/OrderSlice'
 import {
-  selectOrderWithHelperChoiceHelperMainSubjects, selectOrderWithHelperChoiceHelperName, selectOrderWithHelperChoiceHelperSecondName, selectOrderWithHelperChoiceHelperTgName, selectOrderWithHelperChoiceHelperTgPhoto
+  selectOrderWithHelperChoiceHelperMainSubjects, selectOrderWithHelperChoiceHelperName, selectOrderWithHelperChoiceHelperSecondName, selectOrderWithHelperChoiceHelperId, selectOrderWithHelperChoiceHelperTgPhoto
 } from './model/OrderWithHelperSelectors'
 import { setDefaultValues } from './model/OrderWithHelperSlice'
 import {
@@ -37,7 +37,7 @@ export const OrderWithHelper = memo(() => {
 
   const choiceHelperName = useAppSelector(selectOrderWithHelperChoiceHelperName)
   const choiceHelperSecondName = useAppSelector(selectOrderWithHelperChoiceHelperSecondName)
-  const choiceHelperTgName = useAppSelector(selectOrderWithHelperChoiceHelperTgName)
+  const choiceHelperId = useAppSelector(selectOrderWithHelperChoiceHelperId)
   const choiceHelperTgPhoto = useAppSelector(selectOrderWithHelperChoiceHelperTgPhoto)
   const choiceHelperMainSubjects = useAppSelector(selectOrderWithHelperChoiceHelperMainSubjects)
 
@@ -87,9 +87,7 @@ export const OrderWithHelper = memo(() => {
         }
       })
 
-      formData.append('tgName', choiceHelperTgName)
-
-      formData.append('user', `@${WebApp.initDataUnsafe.user?.username as string}`)
+      formData.append('id', choiceHelperId)
 
       await appearance(TAB_LOADING)
 
@@ -110,17 +108,17 @@ export const OrderWithHelper = memo(() => {
       await appearance(TAB_FAIL)
       WebApp.HapticFeedback.notificationOccurred('error')
     }
-  }, [appearance, choiceHelperTgName, dispatch])
+  }, [appearance, choiceHelperId, dispatch])
 
   useEffect(() => () => {
     dispatch(setDefaultValues())
   }, [dispatch])
 
   useEffect(() => {
-    if (!(choiceHelperName && choiceHelperSecondName && choiceHelperTgName && choiceHelperMainSubjects)) {
+    if (!(choiceHelperName && choiceHelperSecondName && choiceHelperId && choiceHelperMainSubjects)) {
       redirect(ROUTES_PATHS.MAIN)
     }
-  }, [redirect, choiceHelperName, choiceHelperSecondName, choiceHelperTgName, choiceHelperTgPhoto, choiceHelperMainSubjects])
+  }, [redirect, choiceHelperName, choiceHelperSecondName, choiceHelperId, choiceHelperTgPhoto, choiceHelperMainSubjects])
 
   useEffect(() => {
     const handler = () => {

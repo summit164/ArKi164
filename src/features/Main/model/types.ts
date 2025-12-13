@@ -3,6 +3,6 @@ export type TypeHelper = {
   name: string
   second_name: string
   main_subjects: string
+  rating: string
   tgPhoto: string
-  tgName: string
 }

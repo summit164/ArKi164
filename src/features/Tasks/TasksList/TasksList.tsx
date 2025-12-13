@@ -23,7 +23,7 @@ export const TasksList = memo(({
     tasks?.length
       ? (
         <div className={s.wrapper}>
-          {tasks?.map(({ name, id }) => (
+          {tasks?.reverse()?.map(({ name, id }) => (
             <Task
               key={id}
               id={id}

@@ -10,4 +10,6 @@ export const selectHelperMainSubjects = (state: RootState) => state.helper.mainS
 export const selectHelperMainSubjectsError = (state: RootState) => state.helper.mainSubjectsError
 export const selectHelperCourse = (state: RootState) => state.helper.mainSubjectsError
 export const selectHelperCourseError = (state: RootState) => state.helper.course
+export const selectHelperIsAgree = (state: RootState) => state.helper.isAgree
+export const selectHelperIsAgreeError = (state: RootState) => state.helper.isAgreeError
 export const selectHelperFilesError = (state: RootState) => state.helper.courseError

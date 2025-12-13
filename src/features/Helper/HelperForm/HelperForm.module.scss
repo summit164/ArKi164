@@ -65,4 +65,17 @@
       }
     }
   }
+
+  .agree {
+    display: flex;
+    align-items: center;
+
+    &_error {
+      font-size: 14px;
+    }
+
+    &_wrapper {
+      margin-bottom: 12px;
+    }
+  }
 }

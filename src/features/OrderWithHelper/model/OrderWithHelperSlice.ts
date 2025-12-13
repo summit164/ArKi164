@@ -2,7 +2,7 @@ import { TypeHelperTransfer } from '@/features/Main/Helpers/model/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type TypeInitialState = {
-  choiceHelperTgName: string
+  choiceHelperId: string
   choiceHelperName: string
   choiceHelperSecondName: string
   choiceHelperTgPhoto: string
@@ -10,7 +10,7 @@ type TypeInitialState = {
 }
 
 const initialState: TypeInitialState = {
-  choiceHelperTgName: '',
+  choiceHelperId: '',
   choiceHelperName: '',
   choiceHelperSecondName: '',
   choiceHelperTgPhoto: '',
@@ -21,14 +21,14 @@ export const OrderWithHelperSlice = createSlice({
   name: 'orderWithHelper',
   initialState,
   reducers: {
-    setChoiceHelperTgName: (state, action: PayloadAction<string>) => ({ ...state, choiceHelperTgName: action.payload }),
+    setChoiceHelperId: (state, action: PayloadAction<string>) => ({ ...state, choiceHelperId: action.payload }),
     setChoiceHelperName: (state, action: PayloadAction<string>) => ({ ...state, choiceHelperName: action.payload }),
     setChoiceHelperSecondName: (state, action: PayloadAction<string>) => ({ ...state, choiceHelperSecondName: action.payload }),
     setChoiceHelperTgPhoto: (state, action: PayloadAction<string>) => ({ ...state, choiceHelperTgPhoto: action.payload }),
     setChoiceHelperMainSubjects: (state, action: PayloadAction<string>) => ({ ...state, choiceHelperMainSubjects: action.payload }),
     setChoiceHelperTransfer: (state, action: PayloadAction<TypeHelperTransfer>) => ({
       ...state,
-      choiceHelperTgName: action.payload.tgName,
+      choiceHelperId: action.payload.id,
       choiceHelperName: action.payload.name,
       choiceHelperSecondName: action.payload.second_name,
       choiceHelperTgPhoto: action.payload.tgPhoto,
@@ -39,7 +39,7 @@ export const OrderWithHelperSlice = createSlice({
 })
 
 export const {
-  setChoiceHelperTgName,
+  setChoiceHelperId,
   setChoiceHelperName,
   setChoiceHelperSecondName,
   setChoiceHelperTgPhoto,

@@ -23,6 +23,10 @@
   --default-padding-form: 15px 48px 0;
 }
 
+html {
+  scrollbar-width: none;
+}
+
 body {
   display: flex;
   flex-direction: column;

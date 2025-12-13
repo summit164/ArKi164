@@ -7,20 +7,21 @@ import { FileList } from '@/shared/ui/FileList/FileList'
 import { Files } from '@/shared/ui/Files/Files'
 import { Error } from '@/shared/ui/Error/Error'
 import { accept, allowedTypes } from '@/features/Order/model/constants'
+import { Checkbox } from '@/shared/ui/Checkbox/Checkbox'
 import s from './HelperForm.module.scss'
 import {
   selectHelperCourseError,
-  selectHelperDirection, selectHelperDirectionError, selectHelperFacult, selectHelperFacultError, selectHelperFilesError, selectHelperMainSubjects, selectHelperMainSubjectsError, selectHelperName, selectHelperNameError, selectHelperSecondName,
+  selectHelperDirection, selectHelperDirectionError, selectHelperFacult, selectHelperFacultError, selectHelperFilesError, selectHelperIsAgree, selectHelperIsAgreeError, selectHelperMainSubjects, selectHelperMainSubjectsError, selectHelperName, selectHelperNameError, selectHelperSecondName,
   selectHelperSecondNameError
 } from '../model/HelperSelectors'
 import {
   setCourse,
-  setDirection, setFacult, setMainSubjects, setName, setSecondName
+  setDirection, setFacult, setIsAgree, setMainSubjects, setName, setSecondName
 } from '../model/HelperSlice'
 import { HELPER_MAX_FILES } from '../model/constants'
 
 type TypeHelperFormProps = {
-  onSubmit: (args: Record<string, string | File[]>) => void
+  onSubmit: (args: Record<string, string | boolean | File[]>) => void
 }
 
 export const HelperForm = memo(({
@@ -41,6 +42,8 @@ export const HelperForm = memo(({
   const filesError = useAppSelector(selectHelperFilesError)
   const course = useAppSelector(selectHelperCourseError)
   const courseError = useAppSelector(selectHelperFilesError)
+  const isAgree = useAppSelector(selectHelperIsAgree)
+  const isAgreeError = useAppSelector(selectHelperIsAgreeError)
 
   const [files, setFiles] = useState<File[]>([])
 
@@ -125,6 +128,18 @@ export const HelperForm = memo(({
         </div>
         {filesError && <Error error={filesError} />}
       </div>
+      <div className={s.agree}>
+        <Checkbox
+          value={isAgree}
+          error={isAgreeError}
+          errorClassName={s.agree_error}
+          className={s.agree_wrapper}
+          text="Согласен с обработкой персональных данных"
+          onChange={(e) => dispatch(setIsAgree(e.target.checked))}
+          name="agree"
+          id="agree"
+        />
+      </div>
       <Button
         onClick={() => onSubmit({
           name,
@@ -133,7 +148,8 @@ export const HelperForm = memo(({
           facult,
           direction,
           mainSubjects,
-          files
+          files,
+          isAgree
         })}
         mode="first"
       >

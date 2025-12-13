@@ -1,12 +1,15 @@
 import { memo } from 'react'
+import clsx from 'clsx'
 import s from './Error.module.scss'
 
 type TypeErrorProps = {
   error: string
+  errorClassName?: string
 }
 
 export const Error = memo(({
-  error
+  error,
+  errorClassName
 }: TypeErrorProps) => (
-  <div className={s.error_text}>{error}</div>
+  <div className={clsx(s.error_text, errorClassName)}>{error}</div>
 ))

@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
 import Textarea from '@/shared/ui/Textarea/Textarea'
@@ -12,7 +12,7 @@ import {
   selectOrderSubjectError
 } from '../model/OrderSelectors'
 import {
-  setAmount, setComment, setCondition, setCourse, setDuration, setFacult, setService, setSubject
+  setAmount, setComment, setCondition, setCourse, setDefaultValues, setDuration, setFacult, setService, setSubject
 } from '../model/OrderSlice'
 import { accept, allowedTypes, ORDER_MAX_FILES } from '../model/constants'
 
@@ -45,6 +45,8 @@ export const OrderForm = memo(({
   const commentError = useAppSelector(selectOrderCommentError)
 
   const [files, setFiles] = useState<File[]>([])
+
+  useEffect(() => () => { dispatch(setDefaultValues()) }, [dispatch])
 
   return (
     <div className={clsx(s.wrapper, wrapperClassName)}>

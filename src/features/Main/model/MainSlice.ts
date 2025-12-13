@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchGetHelpersAsyncThunk } from './MainAsyncThunk'
 import { TypeHelper } from './types'
+import { sortHelpers } from './utils/sortHelpers'
 
 type TypeInitialState = {
   helpers: TypeHelper[]
@@ -23,7 +24,10 @@ export const MainSlice = createSlice({
   extraReducers: (builder) => builder
     .addCase(fetchGetHelpersAsyncThunk.pending, (state) => ({ ...state, pending: true }))
     .addCase(fetchGetHelpersAsyncThunk.fulfilled, (state, action: PayloadAction<TypeHelper[]>) => ({
-      ...state, helpers: action.payload, pending: false, helpersHasBeenLoaded: true
+      ...state,
+      helpers: sortHelpers({ helpers: action.payload }),
+      pending: false,
+      helpersHasBeenLoaded: true
     }))
     .addCase(fetchGetHelpersAsyncThunk.rejected, (state) => ({ ...state, pending: false }))
 })

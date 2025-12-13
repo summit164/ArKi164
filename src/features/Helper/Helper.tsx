@@ -42,12 +42,12 @@ export const Helper = memo(() => {
     appearance(replacedTab)
   }, [dispatch, appearance])
 
-  const onSubmit = useCallback(async (args: Record<string, string | File[]>) => {
+  const onSubmit = useCallback(async (args: Record<string, string | boolean | File[]>) => {
     try {
       let isErrorFilled = false
 
       Object.entries(args).forEach(([key, value]) => {
-        if (!value || (key === 'files' && value?.length !== 2)) {
+        if (!value || (key === 'files' && Array.isArray(value) && value?.length !== 2)) {
           isErrorFilled = true
           dispatch(setError({ key: `${key}Error`, value: 'Обязательное поле' }))
         }
