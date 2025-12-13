@@ -83,7 +83,7 @@ export const Header = memo(({ children }: PropsWithChildren) => {
           />
         </div>
         <div className={s.name}>StudyFlowAa</div>
-        <div className={s.description}>@studyFlowwwbot</div>
+        <div className={s.description}>@StudyFlowNSUbot</div>
         <div ref={controlsRef} className={s.controls}>
           {children}
         </div>
