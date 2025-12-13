@@ -134,7 +134,7 @@ export const HelperForm = memo(({
           error={isAgreeError}
           errorClassName={s.agree_error}
           className={s.agree_wrapper}
-          text="Согласен с обработкой персональных данных"
+          text="Согласен на обработку персональных данных"
           onChange={(e) => dispatch(setIsAgree(e.target.checked))}
           name="agree"
           id="agree"
