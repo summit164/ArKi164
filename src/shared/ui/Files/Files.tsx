@@ -48,7 +48,6 @@ export const Files = memo(({
               }
             }
 
-            console.log(e.target.files)
             const files = [...Array.from(e.target.files || [])]
             onChange?.(files)
             e.target.value = ''

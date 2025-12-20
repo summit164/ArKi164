@@ -77,7 +77,7 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
         }
       })
 
-      formData.append('user', `@${WebApp.initDataUnsafe.user?.username as string}`)
+      formData.append('userTgName', WebApp.initDataUnsafe.user?.username || '')
 
       await appearance(TAB_LOADING)
 
@@ -108,8 +108,8 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
   case TAB_FORM: return (
     <div ref={ref} className={s.wrapper}>
       <IconConvert className={s.icon} />
-      <div className={s.title}>Новая заявка</div>
-      <div className={s.description}>Заполните все необходимые поля - и готово</div>
+      <div className={s.title}>Быстрая заявка</div>
+      <div className={s.description}>Заполните заявку - её увидят все Хелперы, и откликнется подходящий</div>
       <OrderForm onSubmit={onSubmit} />
     </div>
   )

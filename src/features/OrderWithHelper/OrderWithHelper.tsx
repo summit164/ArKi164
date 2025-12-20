@@ -87,6 +87,7 @@ export const OrderWithHelper = memo(() => {
         }
       })
 
+      formData.append('userTgName', WebApp.initDataUnsafe.user?.username || '')
       formData.append('id', choiceHelperId)
 
       await appearance(TAB_LOADING)
@@ -139,8 +140,8 @@ export const OrderWithHelper = memo(() => {
       ref={formRef}
     >
       <IconConvert className={s.icon} />
-      <div className={s.title}>Новая заявка</div>
-      <div className={s.description}>Заполните все необходимые поля - и готово</div>
+      <div className={s.title}>Заявка Хелперу</div>
+      <div className={s.description}>Заполните все поля - и заявка будет отправлена выбранному Хелперу</div>
       <InfoBlock Img={choiceHelperTgPhoto || IconHelperAvatar} title={`${choiceHelperName} ${choiceHelperSecondName}`} description={choiceHelperMainSubjects} />
       <OrderForm onSubmit={onSubmit} />
     </div>

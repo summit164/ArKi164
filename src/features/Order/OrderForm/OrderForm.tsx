@@ -84,8 +84,8 @@ export const OrderForm = memo(({
         />
       </div>
       <div className={s.container}>
-        <Input
-          placeholder="Услуга"
+        <Textarea
+          placeholder="Услуга (подготовиться к работе, решить задачу и т.п.)"
           onChange={(e) => dispatch(setService(e.target.value))}
           value={service}
           error={serviceError}
@@ -93,7 +93,7 @@ export const OrderForm = memo(({
       </div>
       <div className={s.container}>
         <Textarea
-          placeholder="Условие"
+          placeholder="Условие задачи (нужная тема и т.п.)"
           onChange={(e) => dispatch(setCondition(e.target.value))}
           value={condition}
           error={conditionError}
@@ -127,7 +127,7 @@ export const OrderForm = memo(({
       <div className={s.container}>
         <Input
           inputMode="numeric"
-          placeholder="Сумма"
+          placeholder="Ваш бюджет на услугу"
           onChange={(e) => dispatch(setAmount(e.target.value))}
           value={amount}
           error={amountError}
