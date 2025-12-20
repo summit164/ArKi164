@@ -13,16 +13,18 @@ import { ReactComponent as IconPen } from '@/shared/assets/images/icons/penIcon.
 import { useAppearance } from '@/shared/hooks/useAppearance'
 import { ReactComponent as IconFail } from '@/shared/assets/images/icons/orderFail.svg'
 import { ReactComponent as IconHelperAvatar } from '@/shared/assets/images/icons/helper-avatar.svg'
-import { InfoBlock } from '@/entities/InfoBlock/InfoBlock'
 import s from './OrderWithHelper.module.scss'
 import { setError } from '../Order/model/OrderSlice'
 import {
-  selectOrderWithHelperChoiceHelperMainSubjects, selectOrderWithHelperChoiceHelperName, selectOrderWithHelperChoiceHelperSecondName, selectOrderWithHelperChoiceHelperId, selectOrderWithHelperChoiceHelperTgPhoto
+  selectOrderWithHelperChoiceHelperMainSubjects, selectOrderWithHelperChoiceHelperName, selectOrderWithHelperChoiceHelperSecondName, selectOrderWithHelperChoiceHelperId, selectOrderWithHelperChoiceHelperTgPhoto,
+  selectOrderWithHelperChoiceHelperFacult,
+  selectOrderWithHelperChoiceHelperCourse
 } from './model/OrderWithHelperSelectors'
 import { setDefaultValues } from './model/OrderWithHelperSlice'
 import {
   TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_SUCCESS
 } from './model/constatns'
+import { OrderHelper } from './OrderHelper/OrderHelper'
 
 export const OrderWithHelper = memo(() => {
   const dispatch = useAppDispatch()
@@ -35,11 +37,14 @@ export const OrderWithHelper = memo(() => {
   const failRef = useRef<HTMLDivElement>(null)
   const loadingRef = useRef<HTMLDivElement>(null)
 
+  // FIXME сохранить айдишник хелпера и из списка хелперов тянуть данные о нем
   const choiceHelperName = useAppSelector(selectOrderWithHelperChoiceHelperName)
   const choiceHelperSecondName = useAppSelector(selectOrderWithHelperChoiceHelperSecondName)
   const choiceHelperId = useAppSelector(selectOrderWithHelperChoiceHelperId)
   const choiceHelperTgPhoto = useAppSelector(selectOrderWithHelperChoiceHelperTgPhoto)
   const choiceHelperMainSubjects = useAppSelector(selectOrderWithHelperChoiceHelperMainSubjects)
+  const choiceHelperMainFacult = useAppSelector(selectOrderWithHelperChoiceHelperFacult)
+  const choiceHelperMainCourse = useAppSelector(selectOrderWithHelperChoiceHelperCourse)
 
   const appearance = useAppearance({
     elements: {
@@ -142,7 +147,13 @@ export const OrderWithHelper = memo(() => {
       <IconConvert className={s.icon} />
       <div className={s.title}>Заявка Хелперу</div>
       <div className={s.description}>Заполните все поля - и заявка будет отправлена выбранному Хелперу</div>
-      <InfoBlock Img={choiceHelperTgPhoto || IconHelperAvatar} title={`${choiceHelperName} ${choiceHelperSecondName}`} description={choiceHelperMainSubjects} />
+      <OrderHelper
+        Img={choiceHelperTgPhoto || IconHelperAvatar}
+        title={`${choiceHelperName} ${choiceHelperSecondName}`}
+        description={choiceHelperMainSubjects}
+        facult={choiceHelperMainFacult}
+        course={choiceHelperMainCourse}
+      />
       <OrderForm onSubmit={onSubmit} />
     </div>
   )

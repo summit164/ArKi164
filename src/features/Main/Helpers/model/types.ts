@@ -4,4 +4,6 @@ export type TypeHelperTransfer = {
   second_name: string
   main_subjects: string
   tgPhoto: string
+  facult: string
+  course: string
 }

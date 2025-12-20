@@ -64,17 +64,24 @@ export const Helpers = memo(forwardRef<HTMLDivElement>((props, ref) => {
                 data-helpers
               >
                 {helpers?.map(({
-                  tgPhoto, id, name, second_name, main_subjects
+                  tgPhoto, id, name, second_name, main_subjects, facult, course
                 }: TypeHelper) => (
                   <Helper
                     key={id + name + second_name}
                     onClick={() => handleHelperClick({
-                      id, tgPhoto, name, second_name, main_subjects
+                      id,
+                      tgPhoto,
+                      name,
+                      second_name,
+                      main_subjects,
+                      facult,
+                      course
                     })}
                     tgPhoto={tgPhoto}
                     name={name}
                     secondName={second_name}
                     mainSubjects={main_subjects}
+                    facult={facult}
                     data-helper
                   />
                 ))}

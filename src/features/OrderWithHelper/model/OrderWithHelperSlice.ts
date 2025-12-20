@@ -7,6 +7,8 @@ type TypeInitialState = {
   choiceHelperSecondName: string
   choiceHelperTgPhoto: string
   choiceHelperMainSubjects: string
+  choiceHelperFacult: string
+  choiceHelperCourse: string
 }
 
 const initialState: TypeInitialState = {
@@ -14,7 +16,9 @@ const initialState: TypeInitialState = {
   choiceHelperName: '',
   choiceHelperSecondName: '',
   choiceHelperTgPhoto: '',
-  choiceHelperMainSubjects: ''
+  choiceHelperMainSubjects: '',
+  choiceHelperFacult: '',
+  choiceHelperCourse: ''
 }
 
 export const OrderWithHelperSlice = createSlice({
@@ -32,7 +36,9 @@ export const OrderWithHelperSlice = createSlice({
       choiceHelperName: action.payload.name,
       choiceHelperSecondName: action.payload.second_name,
       choiceHelperTgPhoto: action.payload.tgPhoto,
-      choiceHelperMainSubjects: action.payload.main_subjects
+      choiceHelperMainSubjects: action.payload.main_subjects,
+      choiceHelperFacult: action.payload.facult,
+      choiceHelperCourse: action.payload.course
     }),
     setDefaultValues: (state) => ({ ...state, ...initialState })
   }

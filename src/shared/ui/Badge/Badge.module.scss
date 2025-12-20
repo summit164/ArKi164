@@ -1,0 +1,33 @@
+.wrapper {
+  flex: 0 0 auto;
+  color: black;
+  border: 1px solid black;
+  padding: .125rem .25rem;
+  border-radius: .185rem;
+  font-size: .625rem;
+  font-weight: 500;
+  line-height: 1 !important;
+  margin-inline: .25rem .25rem;
+}
+
+.type {
+  &_red {
+    color: #ff595a;
+    border-color: #ff595a;
+  }
+  
+  &_purple {
+    color: #8774e1;
+    border-color: #8774e1;
+  }
+  
+  &_white {
+    color: #ffffff;
+    border-color: #ffffff;  
+  }
+
+  &_blue {
+    color: #65a9e0;
+    border-color: #65a9e0;
+  }
+}

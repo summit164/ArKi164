@@ -98,7 +98,7 @@ export const Helper = memo(() => {
     >
       <IconConvert className={s.icon} />
       <div className={s.title}>Стать хелпером</div>
-      <div className={s.description}>Заполните информацию о себе - и готово</div>
+      <div className={s.description}>Заполните информацию о себе, и мы с вами свяжемся</div>
       <HelperForm onSubmit={onSubmit} />
     </div>
   )

@@ -5,4 +5,6 @@ export type TypeHelper = {
   main_subjects: string
   rating: string
   tgPhoto: string
+  facult: string
+  course: string
 }

@@ -3,6 +3,7 @@
 import { memo } from 'react'
 import { ReactComponent as IconHelperAvatar } from '@/shared/assets/images/icons/helper-avatar.svg'
 import { ReactComponent as IconArrowLeft } from '@/shared/assets/images/icons/arrowLeft.svg'
+import { Badge } from '@/shared/ui/Badge/Badge'
 import s from './Helper.module.scss'
 
 type TypeHelperProps = {
@@ -11,6 +12,7 @@ type TypeHelperProps = {
   secondName: string
   mainSubjects: string
   onClick: () => void
+  facult: string
 }
 
 export const Helper = memo(({
@@ -19,6 +21,7 @@ export const Helper = memo(({
   secondName,
   mainSubjects,
   onClick,
+  facult,
   ...extraProps
 }: TypeHelperProps) => (
   <div
@@ -43,7 +46,10 @@ export const Helper = memo(({
     }
     <div className={s.container}>
       <div className={s.info}>
-        <div className={s.name}>{`${name || '-'} ${secondName || '-'}`}</div>
+        <div className={s.name_container}>
+          <div className={s.name}>{`${name || '-'} ${secondName || '-'}`}</div>
+          {facult && (<Badge type="blue" text={facult} />)}
+        </div>
         <div className={s.description}>{mainSubjects}</div>
       </div>
       <IconArrowLeft className={s.icon_left} />

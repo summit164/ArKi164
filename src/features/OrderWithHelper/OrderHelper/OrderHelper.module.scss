@@ -1,0 +1,58 @@
+.wrapper {
+  background: #181818;
+  display: flex;
+  // align-items: flex-start;
+  border-radius: 10px;
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  gap: 16px;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .img {
+    width: 37px;
+    max-width: 37px;
+    min-width: 37px;
+    height: 37px;
+    max-height: 37px;
+    min-height: 37px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+
+    &_container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  .title {
+    color: var(--white1);
+    font-size: 16px;
+    line-height: 22px;
+
+    &_container {
+      display: flex;
+      align-items: start;
+    }
+  }
+
+  .description {
+    color: var(--white1);
+    font-size: 13px;
+    line-height: 18px;
+    color: #b1c3d5;
+  }
+
+  .course {
+    color: var(--white1);
+    font-size: 13px;
+    line-height: 18px;
+    color: #ffffff;
+  }
+}
