@@ -19,6 +19,7 @@ export const App = memo(() => {
   const [renderApp, setRenderApp] = useState(false)
 
   useEffect(() => {
+    throw new Error('Test error')
     const onAnimationEnd = (e: AnimationEvent) => {
       const { animationName } = e
       if (animationName?.toLowerCase()?.includes('disappearance') && ref.current) {
