@@ -6,15 +6,9 @@ export const initSentry = () => {
 
     Sentry.init({
       dsn: process.env.REACT_APP_SENTRY_DSN,
-
-      environment: 'production',
-
       integrations: [
-        Sentry.consoleLoggingIntegration({
-          levels: ['error']
-        })
-      ],
-      enableLogs: false
+        Sentry.browserTracingIntegration()
+      ]
     })
   } catch (e) {
     console.error('Sentry failed:', e)

@@ -7,6 +7,7 @@ import { initTelegramSettings } from './shared/utils/initTelegramSettings'
 import ErrorBoundary from './features/ErrorBoundary/ErrorBoundary'
 import { initSentry } from './shared/utils/initSentry'
 import { initSupabase } from './shared/utils/initSupabase'
+import { SentryErrorBoundary } from './features/SentryErrorBoundary/SentryErrorBoundary'
 
 initSentry()
 initTelegramSettings()
@@ -20,9 +21,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <ErrorBoundary>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <SentryErrorBoundary>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </SentryErrorBoundary>
     </ErrorBoundary>
   </BrowserRouter>
 )
