@@ -10,6 +10,7 @@ import { selectPending } from '@/model/global/GlobalSelectors'
 import { setPending } from '@/model/global/GlobalSlice'
 import { Loader } from '@/features/Loader/Loader'
 import sLoader from '@/features/Loader/Loader.module.scss'
+import { useIdentify } from '@/shared/hooks/useIdentify/useIdentify'
 
 export const App = memo(() => {
   const ref = useRef<HTMLDivElement>(null)
@@ -17,6 +18,8 @@ export const App = memo(() => {
 
   const pending = useAppSelector(selectPending)
   const [renderApp, setRenderApp] = useState(false)
+
+  useIdentify()
 
   useEffect(() => {
     const onAnimationEnd = (e: AnimationEvent) => {
