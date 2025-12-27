@@ -11,7 +11,7 @@ export const useIdentify = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ tgName: WebApp.initDataUnsafe.user?.username })
+        body: JSON.stringify({ tgName: `@${WebApp.initDataUnsafe.user?.username}` })
       })
       console.log(r)
     }
