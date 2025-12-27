@@ -13,7 +13,7 @@ const items = [
     path: '/'
   },
   {
-    text: 'Стать хелпером',
+    text: 'Стать Хелпером',
     Icon: IconBeHelper,
     path: '/helper'
   },
