@@ -1,7 +1,7 @@
 .wrapper {
   background: #181818;
   display: flex;
-  // align-items: flex-start;
+  align-items: flex-start;
   border-radius: 10px;
   width: 100%;
   padding: 14px 16px;
@@ -11,6 +11,7 @@
   .container {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .img {
@@ -35,6 +36,8 @@
     color: var(--white1);
     font-size: 16px;
     line-height: 22px;
+    word-wrap: break-word;
+    overflow: hidden;
 
     &_container {
       display: flex;
@@ -47,6 +50,7 @@
     font-size: 13px;
     line-height: 18px;
     color: #b1c3d5;
+    word-wrap: break-word;
   }
 
   .course {
@@ -54,5 +58,6 @@
     font-size: 13px;
     line-height: 18px;
     color: #ffffff;
+    word-wrap: break-word;
   }
 }
