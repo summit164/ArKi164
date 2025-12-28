@@ -14,7 +14,7 @@ import { ReactComponent as IconPen } from '@/shared/assets/images/icons/penIcon.
 import s from './Order.module.scss'
 import { setDefaultValues, setError } from './model/OrderSlice'
 import {
-  TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_SUCCESS
+  TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_NO_USERNAME, TAB_SUCCESS
 } from './model/constants'
 
 export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
@@ -25,13 +25,15 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
   const successRef = useRef<HTMLDivElement>(null)
   const failRef = useRef<HTMLDivElement>(null)
   const loadingRef = useRef<HTMLDivElement>(null)
+  const noUsernameRef = useRef<HTMLDivElement>(null)
 
   const appearance = useAppearance({
     elements: {
       [TAB_FORM]: ref as RefObject<HTMLDivElement | null>,
       [TAB_SUCCESS]: successRef,
       [TAB_FAIL]: failRef,
-      [TAB_LOADING]: loadingRef
+      [TAB_LOADING]: loadingRef,
+      [TAB_NO_USERNAME]: noUsernameRef
     },
     state: tab,
     setState: setTab,
@@ -54,6 +56,14 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
 
   const onSubmit = useCallback(async (args: Record<string, string | File[]>) => {
     try {
+      const username = WebApp.initDataUnsafe.user?.username
+
+      if (!username) {
+        await appearance(TAB_NO_USERNAME)
+
+        return
+      }
+
       let isErrorFilled = false
 
       Object.entries(args).forEach(([key, value]) => {
@@ -77,7 +87,7 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
         }
       })
 
-      formData.append('userTgName', WebApp.initDataUnsafe.user?.username || '')
+      formData.append('userTgName', username || '')
 
       await appearance(TAB_LOADING)
 
@@ -141,6 +151,16 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
       containerClassName={s.notification_container}
       description="Немного подождите. Заявка отправляется"
       ref={loadingRef}
+    />
+  )
+  case TAB_NO_USERNAME: return (
+    <Notification
+      Icon={IconFail}
+      title="Нет юзернейма"
+      description="У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram."
+      ref={noUsernameRef}
+      buttonText="Назад"
+      onClick={() => replaceTab(TAB_FORM)}
     />
   )
   default: return null

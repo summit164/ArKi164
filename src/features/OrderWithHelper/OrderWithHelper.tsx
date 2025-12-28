@@ -22,7 +22,7 @@ import {
 } from './model/OrderWithHelperSelectors'
 import { setDefaultValues } from './model/OrderWithHelperSlice'
 import {
-  TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_SUCCESS
+  TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_NO_USERNAME, TAB_SUCCESS
 } from './model/constatns'
 import { OrderHelper } from './OrderHelper/OrderHelper'
 
@@ -36,6 +36,7 @@ export const OrderWithHelper = memo(() => {
   const successRef = useRef<HTMLDivElement>(null)
   const failRef = useRef<HTMLDivElement>(null)
   const loadingRef = useRef<HTMLDivElement>(null)
+  const noUsernameRef = useRef<HTMLDivElement>(null)
 
   // FIXME сохранить айдишник хелпера и из списка хелперов тянуть данные о нем
   const choiceHelperName = useAppSelector(selectOrderWithHelperChoiceHelperName)
@@ -51,7 +52,8 @@ export const OrderWithHelper = memo(() => {
       [TAB_FORM]: formRef,
       [TAB_SUCCESS]: successRef,
       [TAB_FAIL]: failRef,
-      [TAB_LOADING]: loadingRef
+      [TAB_LOADING]: loadingRef,
+      [TAB_NO_USERNAME]: noUsernameRef
     },
     state: tab,
     setState: setTab,
@@ -69,6 +71,14 @@ export const OrderWithHelper = memo(() => {
 
   const onSubmit = useCallback(async (args: Record<string, string | File[]>) => {
     try {
+      const username = WebApp.initDataUnsafe.user?.username
+
+      if (!username) {
+        await appearance(TAB_NO_USERNAME)
+
+        return
+      }
+
       let isErrorFilled = false
 
       Object.entries(args).forEach(([key, value]) => {
@@ -189,6 +199,18 @@ export const OrderWithHelper = memo(() => {
       containerClassName={s.notification_container}
       description="Немного подождите. Заявка отправляется"
       ref={loadingRef}
+    />
+  )
+  case TAB_NO_USERNAME: return (
+    <Notification
+      Icon={IconFail}
+      title="Нет юзернейма"
+      className={s.notification}
+      containerClassName={s.notification_container}
+      description="У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram."
+      ref={noUsernameRef}
+      buttonText="Назад"
+      onClick={() => appearance(TAB_FORM)}
     />
   )
   default: return null
