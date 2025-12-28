@@ -9,7 +9,7 @@ export const useIdentify = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ tgName: `@${WebApp.initDataUnsafe.user}` })
+        body: JSON.stringify({ tgName: `@${JSON.stringify(WebApp.initDataUnsafe.user)}` })
       })
     }
   }
