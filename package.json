@@ -2,6 +2,7 @@
   "name": "study-flow",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://summit164.github.io/ArKi164",
   "dependencies": {
     "@reduxjs/toolkit": "2.9.2",
     "@sentry/react": "10.32.1",

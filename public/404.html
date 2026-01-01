@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StudyFlow</title>
+    <script>
+      // GitHub Pages SPA redirect:
+      // Redirect /<repo>/<path> -> /<repo>/?p=<path>&q=<query>&h=<hash>
+      // index.html will decode it.
+      (function () {
+        var l = window.location;
+        var p = l.pathname.replace(/^\//, '');
+        var q = l.search ? l.search.slice(1) : '';
+        var h = l.hash ? l.hash.slice(1) : '';
+
+        // Keep only path after the repo name (ArKi164)
+        // If repo name is different, update package.json "homepage" and this redirect will still work for most cases.
+        var parts = p.split('/');
+        if (parts.length > 1) {
+          parts.shift();
+        }
+        var restPath = parts.join('/');
+
+        var newUrl = l.origin + l.pathname.split('/').slice(0, 2).join('/') + '/?p=' + encodeURIComponent(restPath);
+        if (q) newUrl += '&q=' + encodeURIComponent(q);
+        if (h) newUrl += '&h=' + encodeURIComponent(h);
+
+        l.replace(newUrl);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
+

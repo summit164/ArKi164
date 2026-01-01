@@ -10,6 +10,31 @@
       content="Web site created using create-react-app"
     />
     <title>StudyFlow</title>
+    <script>
+      // GitHub Pages SPA support:
+      // If we were redirected from 404.html, restore the original path/query/hash.
+      (function () {
+        var l = window.location;
+        var params = new URLSearchParams(l.search);
+        var p = params.get('p');
+        if (!p) return;
+
+        var q = params.get('q');
+        var h = params.get('h');
+
+        // Remove redirect params from query
+        params.delete('p');
+        params.delete('q');
+        params.delete('h');
+
+        var base = l.pathname.replace(/\/$/, '');
+        var newPath = base + '/' + decodeURIComponent(p || '');
+        var newSearch = params.toString();
+        var newUrl = newPath + (newSearch ? '?' + newSearch : '') + (q ? (newSearch ? '&' : '?') + decodeURIComponent(q) : '') + (h ? '#' + decodeURIComponent(h) : '');
+
+        window.history.replaceState(null, '', newUrl);
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
