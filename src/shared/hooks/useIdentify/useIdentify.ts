@@ -20,7 +20,7 @@ export const useIdentify = () => {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ tgName: `@${username}${id ? ` id=${id}` : ''}` })
+            body: JSON.stringify({ tgName: `@${username}${id ? `\nid: ${id}` : ''}` })
           })
 
           return
@@ -34,7 +34,7 @@ export const useIdentify = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ tgName: `Без юзернейма${id ? ` id=${id}` : ''}` })
+        body: JSON.stringify({ tgName: `Без юзернейма${id ? `\nid: ${id}` : ''}` })
       })
     }
   }
