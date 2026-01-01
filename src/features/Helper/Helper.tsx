@@ -13,7 +13,7 @@ import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/util
 import s from './Helper.module.scss'
 import { HelperForm } from './HelperForm/HelperForm'
 import {
-  TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_SUCCESS
+  TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_NO_USERNAME, TAB_SUCCESS
 } from './model/constants'
 import { setDefaultValues, setError } from './model/HelperSlice'
 
@@ -26,13 +26,15 @@ export const Helper = memo(() => {
   const successRef = useRef<HTMLDivElement>(null)
   const failRef = useRef<HTMLDivElement>(null)
   const loadingRef = useRef<HTMLDivElement>(null)
+  const noUsernameRef = useRef<HTMLDivElement>(null)
 
   const appearance = useAppearance({
     elements: {
       [TAB_FORM]: formRef,
       [TAB_SUCCESS]: successRef,
       [TAB_FAIL]: failRef,
-      [TAB_LOADING]: loadingRef
+      [TAB_LOADING]: loadingRef,
+      [TAB_NO_USERNAME]: noUsernameRef
     },
     state: tab,
     setState: setTab
@@ -45,6 +47,14 @@ export const Helper = memo(() => {
 
   const onSubmit = useCallback(async (args: Record<string, string | boolean | File[]>) => {
     try {
+      const username = WebApp.initDataUnsafe.user?.username
+
+      if (!username) {
+        await appearance(TAB_NO_USERNAME)
+
+        return
+      }
+
       let isErrorFilled = false
 
       Object.entries(args).forEach(([key, value]) => {
@@ -140,6 +150,17 @@ export const Helper = memo(() => {
       containerClassName={s.notification_container}
       description="Немного подождите. Заявка отправляется"
       ref={loadingRef}
+    />
+  )
+  case TAB_NO_USERNAME: return (
+    <Notification
+      key={tab}
+      className={s.notification}
+      Icon={IconPen}
+      title="Нет юзернейма"
+      containerClassName={s.notification_container}
+      description="У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram."
+      ref={noUsernameRef}
     />
   )
   default: return null
