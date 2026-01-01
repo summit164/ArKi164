@@ -15,6 +15,7 @@ import {
   TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_SUCCESS
 } from './model/constants'
 import { setDefaultValues, setError } from './model/HelperSlice'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 export const Helper = memo(() => {
   const dispatch = useAppDispatch()
@@ -70,8 +71,11 @@ export const Helper = memo(() => {
 
       await appearance(TAB_LOADING)
 
-      const { status } = await fetch('https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/add-helper', {
+      const { status } = await fetch(getSupabaseFunctionUrl('add-helper'), {
         method: 'POST',
+        headers: {
+          ...getTelegramInitDataHeader()
+        },
         body: formData
       })
 

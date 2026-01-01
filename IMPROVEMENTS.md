@@ -37,14 +37,15 @@ It is meant to be updated **every time we implement / discover** relevant change
 
 | ID | Prio | Owner | Area | Status | Summary |
 |---:|:---:|:-----:|:-----|:------:|:--------|
-| IMP-001 | P0 | BE+FE | Security | planned | Verify Telegram WebApp identity for all edge-function calls |
-| IMP-002 | P0 | FE | Config/Infra | planned | Remove hardcoded Supabase functions URL; centralize API client |
+| IMP-001 | P0 | BE+FE | Security | in_progress | Verify Telegram WebApp identity for all edge-function calls |
+| IMP-002 | P0 | FE | Config/Infra | in_progress | Remove hardcoded Supabase functions URL; centralize API client |
 | IMP-003 | P1 | PM+FE | Auth/Product | planned | Decide and implement auth model (or remove dead auth code) |
 | IMP-004 | P1 | FE | UX/Reliability | planned | Replace `alert()` with Toaster; show inline errors for failed network loads |
 | IMP-005 | P1 | FE | State/Navigation | planned | Persist “chosen helper” across refresh / deep-link safely |
 | IMP-006 | P2 | FE | Bug | planned | Fix helper sorting (`sortHelpers`) logic and rating typing |
 | IMP-007 | P2 | FE | Tech/Types | planned | Align router/types versions and tighten TS where safe |
 | IMP-008 | P2 | FE | Cleanup | planned | Remove or wire unused utilities/components (Toaster usage, `isMobileUser`, `WindowLayout`, etc.) |
+| IMP-009 | P0 | BE+FE | Backend | done | Add Supabase schema + Edge Functions for helpers/tasks/orders + moderation |
 
 ## Items (details)
 
@@ -64,6 +65,19 @@ It is meant to be updated **every time we implement / discover** relevant change
   - `src/shared/hooks/useIdentify/useIdentify.ts` (identify)
 - **Notes**:
   - This likely needs changes **outside this repo** (Supabase edge functions).
+- **Implementation notes (repo)**:
+  - Added Telegram initData verification utility for Edge Functions: `supabase/functions/_shared/telegram.ts`
+  - Frontend now sends `x-telegram-init-data: WebApp.initData` on Supabase function calls (see touched files below)
+  - Requires configuring `TELEGRAM_BOT_TOKEN` and deploying Edge Functions (see `supabase/README.md`)
+- **Touched files (repo)**:
+  - `supabase/functions/_shared/telegram.ts`
+  - `src/shared/hooks/useIdentify/useIdentify.ts`
+  - `src/features/Order/Order.tsx`
+  - `src/features/OrderWithHelper/OrderWithHelper.tsx`
+  - `src/features/Helper/Helper.tsx`
+  - `src/features/Main/model/MainAsyncThunk.ts`
+  - `src/features/Tasks/model/TasksAsyncThunks.ts`
+  - `src/features/TaskDetail/model/TaskDetailAsyncThunk.ts`
 
 ### IMP-002 — Remove hardcoded Supabase functions URL; centralize API client
 - **Why**: URL is duplicated across files; hard to change env/stage; no shared error handling.
@@ -74,6 +88,21 @@ It is meant to be updated **every time we implement / discover** relevant change
 - **Pointers**:
   - Same as IMP-001 (all fetch sites)
   - `src/shared/utils/initSupabase.ts` (env patterns)
+- **Implementation notes (repo)**:
+  - Centralized Supabase Functions base URL + Telegram header helper in `src/shared/utils/supabaseFunctions.ts`
+  - Removed direct hardcoded `https://...supabase.co/functions/v1/...` strings from `src/` (kept as fallback default)
+
+### IMP-009 — Add Supabase schema + Edge Functions for helpers/tasks/orders + moderation
+- **Why**: core flows currently depend on remote edge functions; backend should be versioned alongside the app.
+- **Acceptance criteria**:
+  - DB schema exists as migrations (tables + relations + RLS default-deny)
+  - Edge functions exist for current frontend endpoints
+  - Helpers require manual moderation before appearing in the helpers list
+  - Attachments stored in Supabase Storage with metadata in DB
+- **Pointers**:
+  - `supabase/migrations/20260101121500_init.sql`
+  - `supabase/functions/*`
+  - `supabase/README.md`
 
 ### IMP-003 — Decide and implement auth model (or remove dead auth code)
 - **Why**: auth wrappers exist but `/login` route is not present; current `notAuthOnly` usage is inconsistent.

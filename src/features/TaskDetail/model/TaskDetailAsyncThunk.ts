@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 type TypeFetchTaskDetailAsyncThunkParams = {
   id: number
@@ -8,8 +9,11 @@ export const fetchTaskDetailAsyncThunk = createAsyncThunk(
   'TaskDetail/fetchTaskDetail',
   async ({ id }: TypeFetchTaskDetailAsyncThunkParams, thunkAPI) => {
     try {
-      const data = await fetch(`https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/task-by-id?id=${id}`, {
-        method: 'GET'
+      const data = await fetch(`${getSupabaseFunctionUrl('task-by-id')}?id=${id}`, {
+        method: 'GET',
+        headers: {
+          ...getTelegramInitDataHeader()
+        }
       })
 
       const response = await data.json()

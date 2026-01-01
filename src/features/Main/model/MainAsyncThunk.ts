@@ -1,11 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 export const fetchGetHelpersAsyncThunk = createAsyncThunk(
   'Main/fetchGetHelpers',
   async (_, thunkAPI) => {
     try {
-      const data = await fetch('https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/get-helpers', {
-        method: 'GET'
+      const data = await fetch(getSupabaseFunctionUrl('get-helpers'), {
+        method: 'GET',
+        headers: {
+          ...getTelegramInitDataHeader()
+        }
       })
 
       const response = await data.json()

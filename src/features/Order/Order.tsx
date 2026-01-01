@@ -16,6 +16,7 @@ import { setDefaultValues, setError } from './model/OrderSlice'
 import {
   TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_NO_USERNAME, TAB_SUCCESS
 } from './model/constants'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
   const dispatch = useAppDispatch()
@@ -93,9 +94,12 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
 
       // ручка для отправки сообщения в чат
       const { status } = await fetch(
-        'https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/send-message-in-telegram-group',
+        getSupabaseFunctionUrl('send-message-in-telegram-group'),
         {
           method: 'POST',
+          headers: {
+            ...getTelegramInitDataHeader()
+          },
           body: formData
         }
       )
