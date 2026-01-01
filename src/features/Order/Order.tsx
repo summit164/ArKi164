@@ -11,12 +11,12 @@ import { Notification } from '@/shared/ui/Notification/Notification'
 import { ReactComponent as IconLamp } from '@/shared/assets/images/icons/successLamp.svg'
 import { ReactComponent as IconFail } from '@/shared/assets/images/icons/orderFail.svg'
 import { ReactComponent as IconPen } from '@/shared/assets/images/icons/penIcon.svg'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 import s from './Order.module.scss'
 import { setDefaultValues, setError } from './model/OrderSlice'
 import {
   TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_NO_USERNAME, TAB_SUCCESS
 } from './model/constants'
-import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
   const dispatch = useAppDispatch()

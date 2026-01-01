@@ -30,17 +30,33 @@ export const App = memo(() => {
       }
     }
 
+    // Fallback timeout to ensure app renders even if fonts fail
+    const fallbackTimeout = setTimeout(() => {
+      dispatch(setPending(false))
+      setRenderApp(true)
+    }, 3000)
+
     document.fonts.ready.then(() => {
+      clearTimeout(fallbackTimeout)
       setRenderApp(true)
       setTimeout(() => {
-        if (!ref?.current) { return }
+        if (!ref?.current) {
+          dispatch(setPending(false))
+
+          return
+        }
         ref.current.addEventListener('animationend', onAnimationEnd)
         ref.current.classList.add(sLoader.img_animate_disappearance)
       }, 0)
     }, () => {
+      clearTimeout(fallbackTimeout)
       dispatch(setPending(false))
       setRenderApp(true)
     })
+
+    return () => {
+      clearTimeout(fallbackTimeout)
+    }
   }, [dispatch])
 
   return (

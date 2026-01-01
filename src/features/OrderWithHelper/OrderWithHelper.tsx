@@ -13,6 +13,7 @@ import { ReactComponent as IconPen } from '@/shared/assets/images/icons/penIcon.
 import { useAppearance } from '@/shared/hooks/useAppearance'
 import { ReactComponent as IconFail } from '@/shared/assets/images/icons/orderFail.svg'
 import { ReactComponent as IconHelperAvatar } from '@/shared/assets/images/icons/helper-avatar.svg'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 import s from './OrderWithHelper.module.scss'
 import { setError } from '../Order/model/OrderSlice'
 import {
@@ -25,7 +26,6 @@ import {
   TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_NO_USERNAME, TAB_SUCCESS
 } from './model/constatns'
 import { OrderHelper } from './OrderHelper/OrderHelper'
-import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 export const OrderWithHelper = memo(() => {
   const dispatch = useAppDispatch()

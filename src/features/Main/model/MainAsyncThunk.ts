@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
+import { TypeHelper } from './types'
 
-export const fetchGetHelpersAsyncThunk = createAsyncThunk(
+export const fetchGetHelpersAsyncThunk = createAsyncThunk<TypeHelper[], void, { rejectValue: string }>(
   'Main/fetchGetHelpers',
   async (_, thunkAPI) => {
     try {
@@ -12,9 +13,14 @@ export const fetchGetHelpersAsyncThunk = createAsyncThunk(
         }
       })
 
-      const response = await data.json()
+      if (!data.ok) {
+        throw new Error(`get-helpers failed: ${data.status}`)
+      }
 
-      return response?.data
+      const response = await data.json()
+      const list = Array.isArray(response?.data) ? response.data : []
+
+      return list
     } catch {
       return thunkAPI.rejectWithValue('Ошибка сервера')
     }

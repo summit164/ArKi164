@@ -2,21 +2,18 @@
 import { TypeHelper } from '../types'
 
 type TypeSortHelpersParams = {
-  helpers: TypeHelper[]
+  helpers?: TypeHelper[]
 }
 
 export const sortHelpers = ({ helpers }: TypeSortHelpersParams) => {
-  const array = helpers?.map(({ rating, ...helper }) => ({ ...helper, rating: rating ?? 0 }))
+  const array = [...(helpers ?? [])]
 
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i + 1; j < array.length; j++) {
-      if (helpers?.[i]?.rating < array?.[j]?.rating) {
-        const temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-      }
-    }
-  }
+  // Rating is a string in TypeHelper. Sort by numeric value (desc).
+  return array.sort((a, b) => {
+    const aRating = Number.parseFloat(a.rating) || 0
 
-  return [...array]
+    const bRating = Number.parseFloat(b.rating) || 0
+
+    return bRating - aRating
+  })
 }

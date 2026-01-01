@@ -9,13 +9,13 @@ import { ReactComponent as IconPen } from '@/shared/assets/images/icons/penIcon.
 import { Notification } from '@/shared/ui/Notification/Notification'
 import { ReactComponent as IconFail } from '@/shared/assets/images/icons/orderFail.svg'
 import WebApp from '@twa-dev/sdk'
+import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 import s from './Helper.module.scss'
 import { HelperForm } from './HelperForm/HelperForm'
 import {
   TAB_FAIL, TAB_FORM, TAB_LOADING, TAB_SUCCESS
 } from './model/constants'
 import { setDefaultValues, setError } from './model/HelperSlice'
-import { getSupabaseFunctionUrl, getTelegramInitDataHeader } from '@/shared/utils/supabaseFunctions'
 
 export const Helper = memo(() => {
   const dispatch = useAppDispatch()

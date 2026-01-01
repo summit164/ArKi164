@@ -91,5 +91,3 @@ The frontend sends `x-telegram-init-data` on all calls via `WebApp.initData`.
 
 Bootstrap moderators:
 - Insert Telegram numeric ids into `public.moderators`
-
-

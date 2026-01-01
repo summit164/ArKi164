@@ -8,8 +8,13 @@ export const SUPABASE_FUNCTIONS_BASE_URL = (
 
 export const getSupabaseFunctionUrl = (name: string) => `${SUPABASE_FUNCTIONS_BASE_URL}/${name}`
 
-export const getTelegramInitDataHeader = () => ({
-  'x-telegram-init-data': WebApp.initData
-})
+export const getTelegramInitDataHeader = (): Record<string, string> => {
+  const { initData } = WebApp
+  const headers: Record<string, string> = {}
 
+  if (initData) {
+    headers['x-telegram-init-data'] = initData
+  }
 
+  return headers
+}
