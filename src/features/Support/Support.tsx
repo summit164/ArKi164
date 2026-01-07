@@ -11,7 +11,7 @@ export const Support = memo(() => (
     <div className={s.description}>Если у вас возникли вопросы или вы хотите сообщить об ошибке, пожалуйста, свяжитесь с нашим менеджером</div>
     <Button
       className={s.button}
-      onClick={() => { WebApp.openTelegramLink('https://t.me/KRistinochkaSF') }}
+      onClick={() => { WebApp.openTelegramLink(process.env.REACT_APP_SUPPORT_LINK as string) }}
       mode="first"
     >
       Написать в чат

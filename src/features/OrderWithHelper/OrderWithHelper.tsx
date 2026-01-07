@@ -207,7 +207,20 @@ export const OrderWithHelper = memo(() => {
       title="Нет юзернейма"
       className={s.notification}
       containerClassName={s.notification_container}
-      description="У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram."
+      description={(
+        <>
+          У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram. Или свяжитесь с
+          {' '}
+          <a
+            className={s.link}
+            href={process.env.REACT_APP_SUPPORT_LINK}
+          >
+            @kristina
+          </a>
+          {' '}
+          для оформления заявки
+        </>
+      )}
       ref={noUsernameRef}
       buttonText="Назад"
       onClick={() => appearance(TAB_FORM)}

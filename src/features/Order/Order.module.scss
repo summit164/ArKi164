@@ -36,3 +36,10 @@
     margin-bottom: 40px;
   }
 }
+
+.link {
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--blue2);
+}

@@ -155,8 +155,22 @@ export const Helper = memo(() => {
       Icon={IconPen}
       title="Нет юзернейма"
       containerClassName={s.notification_container}
-      description="У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram."
+      description={(
+        <>
+          У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram. Или свяжитесь с
+          {' '}
+          <a
+            className={s.link}
+            href={process.env.REACT_APP_SUPPORT_LINK}
+          >
+            @kristina
+          </a>
+          {' '}
+          для того, чтобы стать Хелпером
+        </>
+      )}
       ref={noUsernameRef}
+      onClick={() => replaceTab(TAB_FORM)}
     />
   )
   default: return null

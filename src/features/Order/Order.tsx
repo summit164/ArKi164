@@ -157,7 +157,20 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
     <Notification
       Icon={IconFail}
       title="Нет юзернейма"
-      description="У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram."
+      description={(
+        <>
+          У вас не указан Telegram username (@username). Пожалуйста, добавьте его в настройках Telegram. Или свяжитесь с
+          {' '}
+          <a
+            className={s.link}
+            href={process.env.REACT_APP_SUPPORT_LINK}
+          >
+            @kristina
+          </a>
+          {' '}
+          для оформления заявки
+        </>
+      )}
       ref={noUsernameRef}
       buttonText="Назад"
       onClick={() => replaceTab(TAB_FORM)}

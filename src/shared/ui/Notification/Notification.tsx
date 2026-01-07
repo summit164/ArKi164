@@ -1,4 +1,5 @@
-import React, { forwardRef, memo } from 'react'
+/* eslint-disable react/no-danger */
+import React, { forwardRef, memo, ReactNode } from 'react'
 import Button from '@/shared/ui/Button/Button'
 import clsx from 'clsx'
 import s from './Notification.module.scss'
@@ -6,7 +7,7 @@ import s from './Notification.module.scss'
 type TypeNotificationProps = {
   Icon: React.FC<React.SVGProps<SVGSVGElement>>
   title: string
-  description: string
+  description: ReactNode
   buttonText?: string
   onClick?: () => void
   className?: string
@@ -33,7 +34,9 @@ export const Notification = memo(forwardRef<HTMLDivElement, TypeNotificationProp
     <div className={clsx(s.container, containerClassName)}>
       <Icon className={s.icon} />
       <div className={clsx(s.title, titleClassName)}>{title}</div>
-      <div className={clsx(s.description, descriptionClassName)}>{description}</div>
+      <div className={clsx(s.description, descriptionClassName)}>
+        {description}
+      </div>
     </div>
     {onClick && (
       <Button
