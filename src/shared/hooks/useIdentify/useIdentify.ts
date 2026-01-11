@@ -7,36 +7,38 @@ import { useEffect } from 'react'
 
 export const useIdentify = () => {
   const identify = async () => {
-    if (process.env.REACT_APP_MODE === 'production') {
-      const MAX_RETRIES = 10
-      const id = WebApp.initDataUnsafe.user?.id
+    try {
+      if (process.env.REACT_APP_MODE === 'production') {
+        const MAX_RETRIES = 10
+        const id = WebApp.initDataUnsafe.user?.id
 
-      for (let i = 0; i < MAX_RETRIES; i++) {
-        const username = WebApp.initDataUnsafe.user?.username
+        for (let i = 0; i < MAX_RETRIES; i++) {
+          const username = WebApp.initDataUnsafe.user?.username
 
-        if (username) {
-          fetch('https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/identify', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ tgName: `@${username}${id ? `\nid: ${id}` : ''}` })
-          })
+          if (username) {
+            fetch('https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/identify', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ tgName: `@${username}${id ? `\nid: ${id}` : ''}` })
+            })
 
-          return
+            return
+          }
+
+          await new Promise((r) => setTimeout(r, 1000))
         }
 
-        await new Promise((r) => setTimeout(r, 1000))
+        fetch('https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/identify', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ tgName: `Без юзернейма${id ? `\nid: ${id}` : ''}` })
+        })
       }
-
-      fetch('https://xzbkxthnfksriubmhlfx.supabase.co/functions/v1/identify', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ tgName: `Без юзернейма${id ? `\nid: ${id}` : ''}` })
-      })
-    }
+    } catch (e) { console.error('Identify Error: ', e) }
   }
 
   useEffect(() => {
