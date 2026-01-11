@@ -80,6 +80,8 @@ export const Header = memo(({ children }: PropsWithChildren) => {
             className={s.img}
             src={StudyFlowLogo}
             alt="study-flow-logo"
+            fetchPriority="high"
+            loading="eager"
           />
         </div>
         <div className={s.name}>StudyFlow</div>
