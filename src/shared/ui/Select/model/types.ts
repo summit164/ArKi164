@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent } from 'react'
 
 export type TypeOption = {
@@ -14,5 +15,7 @@ export type TypeSelectProps = {
   error?: string | boolean
   className?: string
   listClassName?: string
-  withFiltrationOptions: boolean
+  onFocus?: (val: any) => void
+  onBlur?: (val: any) => void
+  withFiltrationOptions?: boolean
 }

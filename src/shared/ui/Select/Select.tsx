@@ -17,7 +17,9 @@ export const Select = memo(({
   listClassName,
   placeholder,
   error,
-  withFiltrationOptions
+  withFiltrationOptions,
+  onFocus,
+  onBlur
 }: TypeSelectProps) => {
   const [open, setOpen] = useState(false)
 
@@ -71,10 +73,14 @@ export const Select = memo(({
     >
       <Input
         value={value}
-        onFocus={focusHandler}
+        onFocus={(e) => {
+          focusHandler()
+          onFocus?.(e)
+        }}
         onChange={onChange}
         error={error}
         placeholder={placeholder}
+        onBlur={onBlur}
       />
       {open && !!filteredOptions?.length && (
         <div

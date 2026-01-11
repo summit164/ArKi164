@@ -64,6 +64,8 @@ export const OrderForm = memo(({
           options={facults}
           error={facultError}
           placeholder="Факультет"
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
           withFiltrationOptions
         />
       </div>
@@ -75,6 +77,8 @@ export const OrderForm = memo(({
           options={durations}
           error={durationError}
           placeholder="Направление/Кафедра"
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
           withFiltrationOptions
         />
       </div>
@@ -86,7 +90,7 @@ export const OrderForm = memo(({
           value={course}
           error={courseError}
           onFocus={() => changeStateNavbar(false)}
-          onBlur={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
@@ -95,6 +99,8 @@ export const OrderForm = memo(({
           onChange={(e) => dispatch(setSubject(e.target.value))}
           value={subject}
           error={subjectError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
@@ -103,6 +109,8 @@ export const OrderForm = memo(({
           onChange={(e) => dispatch(setService(e.target.value))}
           value={service}
           error={serviceError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
@@ -111,6 +119,8 @@ export const OrderForm = memo(({
           onChange={(e) => dispatch(setCondition(e.target.value))}
           value={condition}
           error={conditionError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={clsx(s.container, s.files_wrapper)}>
@@ -144,6 +154,8 @@ export const OrderForm = memo(({
           onChange={(e) => dispatch(setUrgency(e.target.value))}
           value={urgency}
           error={urgencyError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
@@ -152,6 +164,8 @@ export const OrderForm = memo(({
           onChange={(e) => dispatch(setComment(e.target.value))}
           value={comment}
           error={commentError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <Button

@@ -11,10 +11,12 @@ type Props = {
   error?: string | boolean
   maxLength?: number
   style?: object
+  onFocus?: (val: any) => void
+  onBlur?: (val: any) => void
 }
 
 const Textarea = ({
-  value, onChange, placeholder, className, error, maxLength, style
+  value, onChange, placeholder, className, error, maxLength, style, onFocus, onBlur
 }: Props) => {
   const resize = useCallback((e: ChangeEvent) => {
     (e.target as HTMLTextAreaElement).style.height = '0px';
@@ -34,6 +36,8 @@ const Textarea = ({
         }}
         placeholder={placeholder}
         maxLength={maxLength}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       { error && typeof error === 'string' && <div className={s.error_text}>{error}</div>}
     </div>
