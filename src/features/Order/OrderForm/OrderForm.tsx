@@ -1,4 +1,6 @@
-import { memo, useEffect, useState } from 'react'
+import {
+  memo, useEffect, useMemo, useState
+} from 'react'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
 import Textarea from '@/shared/ui/Textarea/Textarea'
@@ -8,6 +10,7 @@ import clsx from 'clsx'
 import { useAppDispatch, useAppSelector } from '@/shared/utils/hooks'
 import { Select } from '@/shared/ui/Select/Select'
 import { setVisible } from '@/features/Navbar/model/NavbarSlice'
+import { TypeOption } from '@/shared/ui/Select/model/types'
 import s from './OrderForm.module.scss'
 import {
   selectOrderUrgency, selectOrderUrgencyError, selectOrderComment, selectOrderCommentError, selectOrderCondition, selectOrderConditionError, selectOrderCourse, selectOrderCourseError, selectOrderDuration, selectOrderDurationError, selectOrderFacult, selectOrderFacultError, selectOrderService, selectOrderServiceError, selectOrderSubject,
@@ -50,6 +53,13 @@ export const OrderForm = memo(({
 
   const [files, setFiles] = useState<File[]>([])
 
+  const filteredDurations = useMemo(() => {
+    const findedDurations = durations?.find((duration) => duration?.name === facult)?.value
+    const allDurations = durations?.reduce((acc: TypeOption[], duration) => [...acc, ...duration.value], [])
+
+    return findedDurations || allDurations
+  }, [facult])
+
   const changeStateNavbar = (value: boolean) => dispatch(setVisible(value))
 
   useEffect(() => () => { dispatch(setDefaultValues()) }, [dispatch])
@@ -60,7 +70,12 @@ export const OrderForm = memo(({
         <Select
           value={facult}
           onClick={(value) => dispatch(setFacult(value?.toString()))}
-          onChange={(e) => dispatch(setFacult(e.target.value))}
+          onChange={(e) => {
+            dispatch(setFacult(e.target.value))
+            if (e.target.value === '') {
+              dispatch(setDuration(''))
+            }
+          }}
           options={facults}
           error={facultError}
           placeholder="Факультет"
@@ -74,7 +89,7 @@ export const OrderForm = memo(({
           value={duration}
           onClick={(value) => dispatch(setDuration(value?.toString()))}
           onChange={(e) => dispatch(setDuration(e.target.value))}
-          options={durations}
+          options={filteredDurations}
           error={durationError}
           placeholder="Направление/Кафедра"
           onFocus={() => changeStateNavbar(false)}
