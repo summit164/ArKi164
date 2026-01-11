@@ -126,7 +126,6 @@ export const OrderForm = memo(({
       </div>
       <div className={s.container}>
         <Input
-          inputMode="numeric"
           placeholder="Срок задачи, дата или период"
           onChange={(e) => dispatch(setUrgency(e.target.value))}
           value={urgency}
