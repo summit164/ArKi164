@@ -7,6 +7,7 @@ import { FileList } from '@/shared/ui/FileList/FileList'
 import clsx from 'clsx'
 import { useAppDispatch, useAppSelector } from '@/shared/utils/hooks'
 import { Select } from '@/shared/ui/Select/Select'
+import { setVisible } from '@/features/Navbar/model/NavbarSlice'
 import s from './OrderForm.module.scss'
 import {
   selectOrderUrgency, selectOrderUrgencyError, selectOrderComment, selectOrderCommentError, selectOrderCondition, selectOrderConditionError, selectOrderCourse, selectOrderCourseError, selectOrderDuration, selectOrderDurationError, selectOrderFacult, selectOrderFacultError, selectOrderService, selectOrderServiceError, selectOrderSubject,
@@ -18,7 +19,6 @@ import {
 import {
   accept, allowedTypes, durations, facults, ORDER_MAX_FILES
 } from '../model/constants'
-import { setVisible } from '@/features/Navbar/model/NavbarSlice'
 
 type TypeOrderFormProps = {
   onSubmit: (args: Record<string, string | File[]>) => void
