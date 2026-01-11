@@ -82,7 +82,7 @@ export const OrderWithHelper = memo(() => {
       let isErrorFilled = false
 
       Object.entries(args).forEach(([key, value]) => {
-        if (['comment'].includes(key)) { return }
+        if (['duration', 'comment'].includes(key)) { return }
 
         if (!value) {
           isErrorFilled = true

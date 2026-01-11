@@ -67,7 +67,7 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
       let isErrorFilled = false
 
       Object.entries(args).forEach(([key, value]) => {
-        if (['comment'].includes(key)) { return }
+        if (['duration', 'comment'].includes(key)) { return }
 
         if (!value) {
           isErrorFilled = true
