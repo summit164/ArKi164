@@ -18,6 +18,7 @@ import {
 import {
   accept, allowedTypes, durations, facults, ORDER_MAX_FILES
 } from '../model/constants'
+import { setVisible } from '@/features/Navbar/model/NavbarSlice'
 
 type TypeOrderFormProps = {
   onSubmit: (args: Record<string, string | File[]>) => void
@@ -48,6 +49,8 @@ export const OrderForm = memo(({
   const commentError = useAppSelector(selectOrderCommentError)
 
   const [files, setFiles] = useState<File[]>([])
+
+  const changeStateNavbar = (value: boolean) => dispatch(setVisible(value))
 
   useEffect(() => () => { dispatch(setDefaultValues()) }, [dispatch])
 
@@ -82,6 +85,8 @@ export const OrderForm = memo(({
           onChange={(e) => dispatch(setCourse(e.target.value))}
           value={course}
           error={courseError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(false)}
         />
       </div>
       <div className={s.container}>
