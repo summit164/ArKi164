@@ -60,7 +60,7 @@ export const OrderForm = memo(({
       </div>
       <div className={s.container}>
         <Input
-          placeholder="Направление/Кафедра (необязательно)"
+          placeholder="Направление/Кафедра"
           onChange={(e) => dispatch(setDuration(e.target.value))}
           value={duration}
           error={durationError}
@@ -134,7 +134,7 @@ export const OrderForm = memo(({
       </div>
       <div className={s.container}>
         <Textarea
-          placeholder="Комментарий (необязательно)"
+          placeholder="Комментарий"
           onChange={(e) => dispatch(setComment(e.target.value))}
           value={comment}
           error={commentError}
