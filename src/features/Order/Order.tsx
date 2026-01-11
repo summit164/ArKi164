@@ -88,6 +88,7 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
       })
 
       formData.append('userTgName', username || '')
+      formData.append('userTgId', WebApp.initDataUnsafe.user?.id?.toString() || '')
 
       await appearance(TAB_LOADING)
 

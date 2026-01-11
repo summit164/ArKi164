@@ -103,6 +103,7 @@ export const OrderWithHelper = memo(() => {
       })
 
       formData.append('userTgName', WebApp.initDataUnsafe.user?.username || '')
+      formData.append('userTgId', WebApp.initDataUnsafe.user?.id?.toString() || '')
       formData.append('id', choiceHelperId)
 
       await appearance(TAB_LOADING)
