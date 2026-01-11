@@ -1,12 +1,17 @@
 import { useAppDispatch, useAppSelector } from '@/shared/utils/hooks'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
 import clsx from 'clsx'
 import { FileList } from '@/shared/ui/FileList/FileList'
 import { Files } from '@/shared/ui/Files/Files'
 import { Error } from '@/shared/ui/Error/Error'
-import { accept, allowedTypes } from '@/features/Order/model/constants'
+import {
+  accept, allowedTypes, durations, facults
+} from '@/features/Order/model/constants'
+import { Select } from '@/shared/ui/Select/Select'
+import { setVisible } from '@/features/Navbar/model/NavbarSlice'
+import { TypeOption } from '@/shared/ui/Select/model/types'
 import s from './HelperForm.module.scss'
 import {
   selectHelperCourse,
@@ -45,6 +50,15 @@ export const HelperForm = memo(({
 
   const [files, setFiles] = useState<File[]>([])
 
+  const filteredDurations = useMemo(() => {
+    const findedDurations = durations?.find((duration) => duration?.name === facult)?.value
+    const allDurations = durations?.reduce((acc: TypeOption[], duration) => [...acc, ...duration.value], [])
+
+    return findedDurations || allDurations
+  }, [facult])
+
+  const changeStateNavbar = (value: boolean) => dispatch(setVisible(value))
+
   return (
     <div className={s.wrapper}>
       <div className={s.container}>
@@ -53,6 +67,8 @@ export const HelperForm = memo(({
           onChange={(e) => dispatch(setName(e.target.value))}
           value={name}
           error={nameError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
@@ -62,22 +78,39 @@ export const HelperForm = memo(({
           onChange={(e) => dispatch(setSecondName(e.target.value))}
           value={secondName}
           error={secondNameError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
-        <Input
-          placeholder="Факультет"
-          onChange={(e) => dispatch(setFacult(e.target.value))}
+        <Select
           value={facult}
+          onClick={(value) => dispatch(setFacult(value?.toString()))}
+          onChange={(e) => {
+            dispatch(setFacult(e.target.value))
+            if (e.target.value === '') {
+              dispatch(setDirection(''))
+            }
+          }}
+          options={facults}
           error={facultError}
+          placeholder="Факультет"
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
+          withFiltrationOptions
         />
       </div>
       <div className={s.container}>
-        <Input
-          placeholder="Направление/Кафедра"
-          onChange={(e) => dispatch(setDirection(e.target.value))}
+        <Select
           value={direction}
+          onClick={(value) => dispatch(setDirection(value?.toString()))}
+          onChange={(e) => dispatch(setDirection(e.target.value))}
+          options={filteredDurations}
           error={directionError}
+          placeholder="Направление/Кафедра"
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
+          withFiltrationOptions
         />
       </div>
       <div className={s.container}>
@@ -87,6 +120,8 @@ export const HelperForm = memo(({
           onChange={(e) => dispatch(setCourse(e.target.value))}
           value={course}
           error={courseError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
@@ -95,6 +130,8 @@ export const HelperForm = memo(({
           onChange={(e) => dispatch(setMainSubjects(e.target.value))}
           value={mainSubjects}
           error={mainSubjectsError}
+          onFocus={() => changeStateNavbar(false)}
+          onBlur={() => changeStateNavbar(true)}
         />
       </div>
       <div className={s.container}>
