@@ -8,8 +8,8 @@ export const selectOrderService = (state: RootState) => state.order.service
 export const selectOrderServiceError = (state: RootState) => state.order.serviceError
 export const selectOrderCondition = (state: RootState) => state.order.condition
 export const selectOrderConditionError = (state: RootState) => state.order.conditionError
-export const selectOrderAmount = (state: RootState) => state.order.amount
-export const selectOrderAmountError = (state: RootState) => state.order.amountError
+export const selectOrderUrgency = (state: RootState) => state.order.urgency
+export const selectOrderUrgencyError = (state: RootState) => state.order.urgencyError
 export const selectOrderFacult = (state: RootState) => state.order.facult
 export const selectOrderComment = (state: RootState) => state.order.comment
 export const selectOrderCommentError = (state: RootState) => state.order.commentError

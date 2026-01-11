@@ -11,8 +11,8 @@ type TypeInitialState = {
   serviceError: string
   condition: string
   conditionError: string
-  amount: string
-  amountError: string
+  urgency: string
+  urgencyError: string
   facult: string
   facultError: string
   comment: string
@@ -30,8 +30,8 @@ const initialState: TypeInitialState = {
   serviceError: '',
   condition: '',
   conditionError: '',
-  amount: '',
-  amountError: '',
+  urgency: '',
+  urgencyError: '',
   facult: '',
   facultError: '',
   comment: '',
@@ -52,8 +52,8 @@ export const OrderSlice = createSlice({
     setServiceError: (state, action: PayloadAction<string>) => ({ ...state, serviceError: action.payload }),
     setCondition: (state, action: PayloadAction<string>) => ({ ...state, condition: action.payload, conditionError: '' }),
     setConditionError: (state, action: PayloadAction<string>) => ({ ...state, conditionError: action.payload }),
-    setAmount: (state, action: PayloadAction<string>) => ({ ...state, amount: action.payload, amountError: '' }),
-    setAmountError: (state, action: PayloadAction<string>) => ({ ...state, amountError: action.payload }),
+    setUrgency: (state, action: PayloadAction<string>) => ({ ...state, urgency: action.payload, urgencyError: '' }),
+    setUrgencyError: (state, action: PayloadAction<string>) => ({ ...state, urgencyError: action.payload }),
     setFacult: (state, action: PayloadAction<string>) => ({ ...state, facult: action.payload, facultError: '' }),
     setComment: (state, action: PayloadAction<string>) => ({ ...state, comment: action.payload, commentError: '' }),
     setCommentError: (state, action: PayloadAction<string>) => ({ ...state, commentError: action.payload }),
@@ -68,7 +68,7 @@ export const {
   setSubject,
   setService,
   setCondition,
-  setAmount,
+  setUrgency,
   setFacult,
   setComment,
   setCommentError,

@@ -8,11 +8,11 @@ import clsx from 'clsx'
 import { useAppDispatch, useAppSelector } from '@/shared/utils/hooks'
 import s from './OrderForm.module.scss'
 import {
-  selectOrderAmount, selectOrderAmountError, selectOrderComment, selectOrderCommentError, selectOrderCondition, selectOrderConditionError, selectOrderCourse, selectOrderCourseError, selectOrderDuration, selectOrderDurationError, selectOrderFacult, selectOrderFacultError, selectOrderService, selectOrderServiceError, selectOrderSubject,
+  selectOrderUrgency, selectOrderUrgencyError, selectOrderComment, selectOrderCommentError, selectOrderCondition, selectOrderConditionError, selectOrderCourse, selectOrderCourseError, selectOrderDuration, selectOrderDurationError, selectOrderFacult, selectOrderFacultError, selectOrderService, selectOrderServiceError, selectOrderSubject,
   selectOrderSubjectError
 } from '../model/OrderSelectors'
 import {
-  setAmount, setComment, setCondition, setCourse, setDefaultValues, setDuration, setFacult, setService, setSubject
+  setUrgency, setComment, setCondition, setCourse, setDefaultValues, setDuration, setFacult, setService, setSubject
 } from '../model/OrderSlice'
 import { accept, allowedTypes, ORDER_MAX_FILES } from '../model/constants'
 
@@ -37,8 +37,8 @@ export const OrderForm = memo(({
   const serviceError = useAppSelector(selectOrderServiceError)
   const condition = useAppSelector(selectOrderCondition)
   const conditionError = useAppSelector(selectOrderConditionError)
-  const amount = useAppSelector(selectOrderAmount)
-  const amountError = useAppSelector(selectOrderAmountError)
+  const urgency = useAppSelector(selectOrderUrgency)
+  const urgencyError = useAppSelector(selectOrderUrgencyError)
   const facult = useAppSelector(selectOrderFacult)
   const facultError = useAppSelector(selectOrderFacultError)
   const comment = useAppSelector(selectOrderComment)
@@ -127,10 +127,10 @@ export const OrderForm = memo(({
       <div className={s.container}>
         <Input
           inputMode="numeric"
-          placeholder="Ваш бюджет на услугу"
-          onChange={(e) => dispatch(setAmount(e.target.value))}
-          value={amount}
-          error={amountError}
+          placeholder="Срок задачи, дата или период"
+          onChange={(e) => dispatch(setUrgency(e.target.value))}
+          value={urgency}
+          error={urgencyError}
         />
       </div>
       <div className={s.container}>
@@ -149,7 +149,7 @@ export const OrderForm = memo(({
           subject,
           service,
           condition,
-          amount,
+          urgency,
           comment,
           files
         })}
