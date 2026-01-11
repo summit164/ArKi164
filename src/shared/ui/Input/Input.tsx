@@ -48,7 +48,12 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      { error && typeof error === 'string' && <Error error={error} />}
+      { error && typeof error === 'string' && (
+        <Error
+          error={error}
+          errorClassName={s.error}
+        />
+      )}
     </div>
   )
 })

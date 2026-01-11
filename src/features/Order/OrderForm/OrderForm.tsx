@@ -6,6 +6,7 @@ import { Files } from '@/shared/ui/Files/Files'
 import { FileList } from '@/shared/ui/FileList/FileList'
 import clsx from 'clsx'
 import { useAppDispatch, useAppSelector } from '@/shared/utils/hooks'
+import { Select } from '@/shared/ui/Select/Select'
 import s from './OrderForm.module.scss'
 import {
   selectOrderUrgency, selectOrderUrgencyError, selectOrderComment, selectOrderCommentError, selectOrderCondition, selectOrderConditionError, selectOrderCourse, selectOrderCourseError, selectOrderDuration, selectOrderDurationError, selectOrderFacult, selectOrderFacultError, selectOrderService, selectOrderServiceError, selectOrderSubject,
@@ -14,7 +15,9 @@ import {
 import {
   setUrgency, setComment, setCondition, setCourse, setDefaultValues, setDuration, setFacult, setService, setSubject
 } from '../model/OrderSlice'
-import { accept, allowedTypes, ORDER_MAX_FILES } from '../model/constants'
+import {
+  accept, allowedTypes, durations, facults, ORDER_MAX_FILES
+} from '../model/constants'
 
 type TypeOrderFormProps = {
   onSubmit: (args: Record<string, string | File[]>) => void
@@ -51,19 +54,25 @@ export const OrderForm = memo(({
   return (
     <div className={clsx(s.wrapper, wrapperClassName)}>
       <div className={s.container}>
-        <Input
-          placeholder="Факультет"
-          onChange={(e) => dispatch(setFacult(e.target.value))}
+        <Select
           value={facult}
+          onClick={(value) => dispatch(setFacult(value?.toString()))}
+          onChange={(e) => dispatch(setFacult(e.target.value))}
+          options={facults}
           error={facultError}
+          placeholder="Факультет"
+          withFiltrationOptions
         />
       </div>
       <div className={s.container}>
-        <Input
-          placeholder="Направление/Кафедра"
-          onChange={(e) => dispatch(setDuration(e.target.value))}
+        <Select
           value={duration}
+          onClick={(value) => dispatch(setDuration(value?.toString()))}
+          onChange={(e) => dispatch(setDuration(e.target.value))}
+          options={durations}
           error={durationError}
+          placeholder="Направление/Кафедра"
+          withFiltrationOptions
         />
       </div>
       <div className={s.container}>

@@ -1,0 +1,58 @@
+.wrapper {
+  position: relative;
+  
+  .list {
+    position: absolute;
+    max-height: 143px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #181818;
+    border-radius: 10px;
+    background-blend-mode: overlay, normal;
+    padding: 0 10px;
+    border: 1px solid #97979e;
+    overscroll-behavior: none;
+    animation-name: appearance;
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    z-index: 100;
+
+    .item {
+      padding: 14px 0;
+      color: white;
+      &:not(:last-child) {
+        border-bottom: 1px solid #97979e;
+      }
+    }
+  }
+}
+
+@keyframes appearance {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+
+.animation_disappearance {
+  animation-name: disappearance !important;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+}
+
+@keyframes disappearance {
+  from {
+    opacity: 1
+  }
+
+  to {
+    opacity: 0
+  }
+}
