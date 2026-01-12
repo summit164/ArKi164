@@ -1,7 +1,6 @@
 import {
   memo, useCallback, useEffect, useRef, useState
 } from 'react'
-import { ReactComponent as IconConvert } from '@/shared/assets/images/icons/convert.svg'
 import { useAppearance } from '@/shared/hooks/useAppearance'
 import { useAppDispatch } from '@/shared/utils/hooks'
 import { ReactComponent as IconSuccess } from '@/shared/assets/images/icons/helperSuccess.svg'
@@ -9,6 +8,7 @@ import { ReactComponent as IconPen } from '@/shared/assets/images/icons/penIcon.
 import { Notification } from '@/shared/ui/Notification/Notification'
 import { ReactComponent as IconFail } from '@/shared/assets/images/icons/orderFail.svg'
 import WebApp from '@twa-dev/sdk'
+import { ReactComponent as IconTeacher } from '@/shared/assets/images/icons/teacher.svg'
 import s from './Helper.module.scss'
 import { HelperForm } from './HelperForm/HelperForm'
 import {
@@ -106,7 +106,7 @@ export const Helper = memo(() => {
       className={s.wrapper}
       ref={formRef}
     >
-      <IconConvert className={s.icon} />
+      <IconTeacher className={s.icon} />
       <div className={s.title}>Стать Хелпером</div>
       <div className={s.description}>Заполните информацию о себе, и мы с вами свяжемся</div>
       <HelperForm onSubmit={onSubmit} />

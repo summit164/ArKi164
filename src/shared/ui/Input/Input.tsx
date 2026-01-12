@@ -51,7 +51,7 @@ const Input: FC<InputProps> = forwardRef((props, ref) => {
       { error && typeof error === 'string' && (
         <Error
           error={error}
-          errorClassName={s.error}
+          errorClassName={s.error_block}
         />
       )}
     </div>

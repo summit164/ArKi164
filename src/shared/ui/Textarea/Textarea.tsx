@@ -2,6 +2,7 @@
 import { ChangeEvent, useCallback } from 'react'
 import clsx from 'clsx'
 import s from './Textarea.module.scss'
+import { Error } from '../Error/Error'
 
 type Props = {
   value?: string
@@ -39,7 +40,12 @@ const Textarea = ({
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      { error && typeof error === 'string' && <div className={s.error_text}>{error}</div>}
+      { error && typeof error === 'string' && (
+        <Error
+          error={error}
+          errorClassName={s.error_block}
+        />
+      )}
     </div>
   )
 }

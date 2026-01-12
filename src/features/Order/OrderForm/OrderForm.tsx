@@ -1,5 +1,5 @@
 import {
-  memo, useEffect, useMemo, useState
+  memo, useCallback, useEffect, useMemo, useState
 } from 'react'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
@@ -60,9 +60,12 @@ export const OrderForm = memo(({
     return findedDurations || allDurations
   }, [facult])
 
-  const changeStateNavbar = (value: boolean) => dispatch(setVisible(value))
+  const changeStateNavbar = useCallback((value: boolean) => dispatch(setVisible(value)), [dispatch])
 
-  useEffect(() => () => { dispatch(setDefaultValues()) }, [dispatch])
+  useEffect(() => () => {
+    dispatch(setDefaultValues())
+    changeStateNavbar(true)
+  }, [dispatch, changeStateNavbar])
 
   return (
     <div className={clsx(s.wrapper, wrapperClassName)}>

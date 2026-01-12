@@ -32,10 +32,6 @@
   flex-direction: column;
 }
 
-.error {
-  border-color: var(--red1);
-
-  &_text {
-    color: var(--red1);
-  }
+.error_block {
+  margin: 2px 10px 0;
 }

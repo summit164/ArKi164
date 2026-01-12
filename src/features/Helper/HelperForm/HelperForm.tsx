@@ -1,5 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/shared/utils/hooks'
-import { memo, useMemo, useState } from 'react'
+import {
+  memo, useCallback, useEffect, useMemo, useState
+} from 'react'
 import Input from '@/shared/ui/Input/Input'
 import Button from '@/shared/ui/Button/Button'
 import clsx from 'clsx'
@@ -57,7 +59,11 @@ export const HelperForm = memo(({
     return findedDurations || allDurations
   }, [facult])
 
-  const changeStateNavbar = (value: boolean) => dispatch(setVisible(value))
+  const changeStateNavbar = useCallback((value: boolean) => dispatch(setVisible(value)), [])
+
+  useEffect(() => {
+    changeStateNavbar(true)
+  }, [changeStateNavbar])
 
   return (
     <div className={s.wrapper}>

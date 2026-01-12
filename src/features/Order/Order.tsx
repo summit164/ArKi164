@@ -1,7 +1,7 @@
 import {
   forwardRef, memo, RefObject, useCallback, useEffect, useRef, useState
 } from 'react'
-import { ReactComponent as IconConvert } from '@/shared/assets/images/icons/convert.svg'
+import { ReactComponent as IconRocket } from '@/shared/assets/images/icons/rocket.svg'
 
 import WebApp from '@twa-dev/sdk'
 import { OrderForm } from '@/features/Order/OrderForm/OrderForm'
@@ -118,7 +118,7 @@ export const Order = memo(forwardRef<HTMLDivElement>((_, ref) => {
   switch (tab) {
   case TAB_FORM: return (
     <div ref={ref} className={s.wrapper}>
-      <IconConvert className={s.icon} />
+      <IconRocket className={s.icon} />
       <div className={s.title}>Быстрая заявка</div>
       <div className={s.description}>Заполните заявку - её увидят все Хелперы, и откликнется подходящий</div>
       <OrderForm onSubmit={onSubmit} />
