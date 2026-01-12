@@ -35,6 +35,8 @@ export const Header = memo(({ children }: PropsWithChildren) => {
 
           lampGridRef.current?.classList.add(s['small-lamp-grid'])
           lampGridRef.current?.classList.remove(s['large-lamp-grid'])
+
+          WebApp.HapticFeedback.impactOccurred('soft')
         } else if (isUp && scrollY < switchPoint) {
           wrapperRef.current.classList.add(s['down-container'])
           wrapperRef.current.classList.remove(s['up-container'])
@@ -44,6 +46,8 @@ export const Header = memo(({ children }: PropsWithChildren) => {
 
           lampGridRef.current?.classList.add(s['large-lamp-grid'])
           lampGridRef.current?.classList.remove(s['small-lamp-grid'])
+
+          WebApp.HapticFeedback.impactOccurred('soft')
         } else if (isDown && scrollY > switchPoint) {
           wrapperRef.current.classList.add(s['up-container'])
           wrapperRef.current.classList.remove(s['down-container'])
@@ -53,9 +57,9 @@ export const Header = memo(({ children }: PropsWithChildren) => {
 
           lampGridRef.current?.classList.add(s['small-lamp-grid'])
           lampGridRef.current?.classList.remove(s['large-lamp-grid'])
-        }
 
-        WebApp.HapticFeedback.impactOccurred('soft')
+          WebApp.HapticFeedback.impactOccurred('soft')
+        }
       }
 
       onScroll()
