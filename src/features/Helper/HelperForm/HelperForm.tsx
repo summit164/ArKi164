@@ -59,7 +59,7 @@ export const HelperForm = memo(({
     return findedDurations || allDurations
   }, [facult])
 
-  const changeStateNavbar = useCallback((value: boolean) => dispatch(setVisible(value)), [])
+  const changeStateNavbar = useCallback((value: boolean) => dispatch(setVisible(value)), [dispatch])
 
   useEffect(() => {
     changeStateNavbar(true)
