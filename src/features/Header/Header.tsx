@@ -38,7 +38,6 @@ export const Header = memo(({ children }: PropsWithChildren) => {
 
           WebApp.HapticFeedback.impactOccurred('soft')
         } else if (isUp && scrollY < switchPoint) {
-          
           wrapperRef.current.classList.add(s['down-container'])
           wrapperRef.current.classList.remove(s['up-container'])
 
