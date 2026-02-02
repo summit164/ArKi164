@@ -32,8 +32,4 @@ export const MainSlice = createSlice({
     .addCase(fetchGetHelpersAsyncThunk.rejected, (state) => ({ ...state, pending: false }))
 })
 
-// export const {
-
-// } = MainSlice.actions
-
 export default MainSlice.reducer

@@ -132,10 +132,10 @@ export const OrderWithHelper = memo(() => {
   }, [dispatch])
 
   useEffect(() => {
-    if (!(choiceHelperName && choiceHelperSecondName && choiceHelperId && choiceHelperMainSubjects)) {
+    if (!(choiceHelperName && choiceHelperId && choiceHelperMainSubjects)) {
       redirect(ROUTES_PATHS.MAIN)
     }
-  }, [redirect, choiceHelperName, choiceHelperSecondName, choiceHelperId, choiceHelperTgPhoto, choiceHelperMainSubjects])
+  }, [redirect, choiceHelperName, choiceHelperId, choiceHelperTgPhoto, choiceHelperMainSubjects])
 
   useEffect(() => {
     const handler = () => {
@@ -160,7 +160,7 @@ export const OrderWithHelper = memo(() => {
       <div className={s.description}>Заполните все поля - и заявка будет отправлена выбранному Хелперу</div>
       <OrderHelper
         Img={choiceHelperTgPhoto || IconHelperAvatar}
-        title={`${choiceHelperName} ${choiceHelperSecondName}`}
+        title={`${choiceHelperName || ''} ${choiceHelperSecondName || ''}`}
         description={choiceHelperMainSubjects}
         facult={choiceHelperMainFacult}
         course={choiceHelperMainCourse}

@@ -47,7 +47,7 @@ export const Helper = memo(({
     <div className={s.container}>
       <div className={s.info}>
         <div className={s.name_container}>
-          <div className={s.name}>{`${name || '-'} ${secondName || '-'}`}</div>
+          <div className={s.name}>{`${name || ''} ${secondName || ''}`}</div>
           {facult && (<Badge type="blue" text={facult} />)}
         </div>
         <div className={s.description}>{mainSubjects}</div>
